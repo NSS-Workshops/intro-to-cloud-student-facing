@@ -1,11 +1,31 @@
-import { workshop1Chapters } from "./workshop1"
-import { workshop2Chapters } from "./workshop2"
-import { workshop3Chapters } from "./workshop3"
+import { introductionChapters } from "./introduction"
+import { cloudFundamentalsChapters } from "./cloud-fundamentals"
+import { awsS3HostingChapters } from "./aws-s3-hosting"
+import { introToCicdChapters } from "./intro-to-cicd"
+import { cloudfrontChapters } from "./cloudfront"
+import { introToDockerChapters } from "./docker"
+import { cliEcrChapters } from "./aws-cli-ecr"
+import { ec2Chapters } from "./ec2"
+import { ec2CicdChapters } from "./cicd-with-ec2"
+import { introToRDSChapters } from "./rds"
+import { dockerNetworkChapters } from "./docker-network"
+import { dockerComposeChapters } from "./docker-compose"
+import { conclusionChapters } from "./conclusion"
 
 export const chapters = [
-  ...workshop1Chapters,
-  ...workshop2Chapters,
-  ...workshop3Chapters
+  ...introductionChapters,
+  ...cloudFundamentalsChapters,
+  ...awsS3HostingChapters,
+  ...cloudfrontChapters,
+  ...introToCicdChapters,
+  ...introToDockerChapters,
+  ...cliEcrChapters,
+  ...ec2Chapters,
+  ...ec2CicdChapters,
+  ...introToRDSChapters,
+  ...conclusionChapters,
+  ...dockerNetworkChapters,
+  ...dockerComposeChapters,
 ]
 /**
  * Helper function to get chapter by ID
