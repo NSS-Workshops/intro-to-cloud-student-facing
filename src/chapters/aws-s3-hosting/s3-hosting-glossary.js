@@ -1,5 +1,4 @@
 
-
 This glossary provides definitions for key terms introduced in the AWS S3 Hosting module.
 
 | Term | Description |
@@ -15,3 +14,4 @@ This glossary provides definitions for key terms introduced in the AWS S3 Hostin
 | **Build** | The process of creating optimized, production-ready files from your source code. For React apps, this creates the dist or build folder. |
 | **Distribution Files** | The optimized files in the dist or build folder that are ready to be deployed to production. |
 | **Public Access** | The ability for anyone on the internet to read (view/download) objects from your S3 bucket. Required for website hosting. |
+

@@ -94,4 +94,40 @@ Let’s break down Docker’s architecture into bite-sized concepts:
 - **Docker Hub**: A cloud registry of container images (think GitHub, but for Docker).
 - **Docker CLI**: The command-line interface you’ll use to build images, run containers, and manage everything.
 
-When you run `docker build\
+When you run \`docker build\`, Docker reads your Dockerfile and creates an image. You can then run that image with \`docker run\` to create a container.
+
+## Why Docker for the Rock of Ages App?
+
+So why introduce Docker now? Your app might work locally — so what’s the point?
+
+- **Local development**: Simplifies onboarding. No one has to install Node, Python, or PostgreSQL — it’s all in the container.
+- **Production-ready**: You’ll eventually deploy to cloud infrastructure. Docker is the standard foundation for modern deployment pipelines.
+- **Infrastructure as Code**: You’ll write repeatable, version-controlled environments that move with your code.
+
+Imagine being able to say: “Clone this repo, run one command, and everything just works.” That’s Docker.
+
+## Real-World Analogy
+
+If your app is a dish, Docker is a meal prep box.
+
+You’re not just handing someone a recipe — you’re giving them all the ingredients, pre-measured, in a sealed container. No grocery trips. No measuring. Just open and cook.
+
+## Key Docker Concepts We’ll Use
+
+As we start writing Docker code, here are a few terms you'll encounter:
+
+- **FROM**: Defines the base image (like starting with a pre-made dough for your pizza)
+- **RUN**: Executes a command inside the image during build (like adding ingredients)
+- **COPY**: Copies files from your host machine into the image
+- **CMD**: The command that runs when your container starts (like “npm start”)
+- **EXPOSE**: Tells Docker which port your app will use
+
+## What We’ll Do Next
+
+In the next chapter, we’ll:
+1. Clone the rock-of-ages-api project with a Dockerfile included
+2. Build a Docker image from that file
+3. Run a container locally using the image
+4. Confirm the Rock of Ages API runs inside the container
+
+By the end of this section, your backend will be running in a fully self-contained Docker environment — a huge step toward scalable, production-ready deployment.

@@ -26,12 +26,12 @@ other tasks like issue triage, dependency updates, and more.
 
 ## Anatomy of a Workflow File
 
-GitHub Actions workflows are defined in YAML files stored in the `.github/workflows` directory of your repository. 
+GitHub Actions workflows are defined in YAML files stored in the \`.github/workflows\` directory of your repository. 
 Let's examine an example workflow file that would run whenever code is pushed to the repository.
 
 ### Basic Workflow Structure
 
-```yaml
+\`\`\`yaml
 name: CI
 
 on:
@@ -57,7 +57,7 @@ jobs:
       
     - name: Run tests
       run: npm test
-```
+\`\`\`
 
 ### 🏗️ How It Works
 - 1️⃣ You push code to your GitHub repository.
@@ -103,7 +103,7 @@ building, and deploying code using GitHub Actions.
 
 You can trigger workflows based on various GitHub events:
 
-```yaml
+\`\`\`yaml
 on:
   # Trigger on push to specific branches
   push:
@@ -129,13 +129,13 @@ on:
   # Repository dispatch event
   repository_dispatch:
     types: [ deploy ]
-```
+\`\`\`
 
 ### Jobs and Steps
 
 A workflow consists of one or more jobs that can run in parallel or sequentially:
 
-```yaml
+\`\`\`yaml
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -151,13 +151,13 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build
         run: npm run build
-```
+\`\`\`
 
 ### Job Environments and Conditions
 
 You can specify environments and conditions for jobs:
 
-```yaml
+\`\`\`yaml
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -167,7 +167,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Deploy
         run: ./deploy.sh
-```
+\`\`\`
 
 ## Workflow Triggers and Events
 
@@ -221,17 +221,17 @@ GitHub Actions provides context objects that contain information about the workf
 
 #### Expression Syntax
 
-Expressions are enclosed in `${{ }}` and can be used in most places in workflow files:
+Expressions are enclosed in \`\${{ }}\` and can be used in most places in workflow files:
 
-```yaml
+\`\`\`yaml
 steps:
   - name: Conditional step
-    if: ${{ github.event_name == 'push' }}
+    if: \${{ github.event_name == 'push' }}
     run: echo "This was a push event"
     
   - name: Dynamic value
-    run: echo "Repository is ${{ github.repository }}"
-```
+    run: echo "Repository is \${{ github.repository }}"
+\`\`\`
 
 ## Using Actions from the Marketplace
 
@@ -247,15 +247,15 @@ One of the most powerful features of GitHub Actions is the ability to use pre-bu
 
 #### Checkout Code
 
-```yaml
+\`\`\`yaml
 - uses: actions/checkout@v3
   with:
     fetch-depth: 0  # Fetch all history for all branches and tags
-```
+\`\`\`
 
 #### Setup Language Environments
 
-```yaml
+\`\`\`yaml
 - uses: actions/setup-node@v3
   with:
     node-version: '16'
@@ -264,25 +264,25 @@ One of the most powerful features of GitHub Actions is the ability to use pre-bu
 - uses: actions/setup-python@v4
   with:
     python-version: '3.10'
-```
+\`\`\`
 
 #### Uploading Artifacts
-```yaml
+\`\`\`yaml
 - uses: actions/upload-artifact@v3
   with:
     name: my-artifact
     path: dist/
-```
+\`\`\`
 
 #### Deployment Actions
 
-```yaml
+\`\`\`yaml
 - uses: aws-actions/configure-aws-credentials@v1
   with:
-    aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    aws-access-key-id: \${{ secrets.AWS_ACCESS_KEY_ID }}
+    aws-secret-access-key: \${{ secrets.AWS_SECRET_ACCESS_KEY }}
     aws-region: us-east-1
-```
+\`\`\`
 
 ### Creating Custom Actions
 
@@ -295,7 +295,7 @@ You can also create your own actions:
   The uses property in the "Run external JavaScript action" step below illustrates how to run a custom 
   JavaScript action defined in an external file that is part of the repository.
 
-```
+\`\`\`
 name: Inline JavaScript in GitHub Actions
 
 on:
@@ -319,7 +319,7 @@ jobs:
       uses: ./.github/actions/my-js-action
       with:
         example-input: "Hello, world!"
-```
+\`\`\`
 
 ## Hands-on Exercise: Create a Basic CI Workflow
 

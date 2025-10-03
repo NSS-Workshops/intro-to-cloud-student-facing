@@ -38,7 +38,7 @@ There’s a bit more to launching a virtual machine than pushing a button. Here 
 |------|-------------|
 | **Instance** | A virtual machine running on AWS. You control the OS, installed software, and networking. |
 | **AMI (Amazon Machine Image)** | A snapshot/template of a system, including the operating system and any preinstalled packages. You choose one when launching an instance. |
-| **Instance Type** | Defines the hardware resources (CPU, RAM, network performance). For example: `t2.micro` (small) or `m5.large` (medium). |
+| **Instance Type** | Defines the hardware resources (CPU, RAM, network performance). For example: \`t2.micro\` (small) or \`m5.large\` (medium). |
 | **Key Pair** | Used for secure SSH login. You download a private key when you create the pair, and EC2 stores the public key. |
 | **Security Group** | Acts as a firewall. You define what kind of traffic (like HTTP, HTTPS, or SSH) is allowed to reach your instance. |
 | **Elastic IP** | A static, public IP address that you can associate with your instance, so its address doesn’t change when restarted. |
@@ -67,7 +67,7 @@ In this course, you’ll use EC2 to host the **Rock of Ages** backend.
 Here’s what that journey looks like:
 
 1. **Launch an EC2 instance**  
-   Choose an Amazon Linux or Ubuntu image, an instance type (like `t2.micro`), and set up your key pair.
+   Choose an Amazon Linux or Ubuntu image, an instance type (like \`t2.micro\`), and set up your key pair.
 
 2. **Connect to your instance via SSH**  
    Use your terminal to securely log in to your EC2 machine.

@@ -1,3 +1,4 @@
+
 Welcome to the **Intro to Cloud** course! By the end of this workshop, you'll understand key cloud concepts, gain hands-on experience deploying a full stack application to the cloud, 
 and confidently discuss terms related to cloud and CICD practices. 
 
@@ -33,10 +34,10 @@ We also offer some additional(optional) content expanding on docker where you'll
 - Introduction to **Docker networking**
 - Introduction to **Docker compose**
 
-You'll build a working vocabulary of cloud-related terms so you can talk tech with confidence.
+You’ll build a working vocabulary of cloud-related terms so you can talk tech with confidence.
 
-## The diagram below show our goal: a cloud-powered masterpiece you'll soon command. 🚀
-<img width=700 src="../../../public/assets/workshopOverview.png"/>
+## The diagram below show our goal: a cloud-powered masterpiece you’ll soon command. 🚀
+<img width=700 src="${diagramImg}"/>
 
 
 ## 🗓️ Course Structure
@@ -120,4 +121,3 @@ There will be Nine class sessions held on Zoom.
 - Final Assessment: one-on-one meeting with an instructor
     - Students will be required to show that they have set up the AWS services covered throughout the course. 
     - Students will answer a few "interview" questions to show that they can discuss what they've learned and use the vocabulary correctly. We are not expecting mastery just a basic understanding of the concepts. 
-

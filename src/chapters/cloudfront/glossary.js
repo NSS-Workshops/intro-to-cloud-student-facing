@@ -1,4 +1,3 @@
-
 This glossary provides definitions for key terms introduced in the CloudFront module.
 
 | Term | Description |
@@ -32,4 +31,3 @@ And, of course, you can incorporate Amazon Route53 with CloudFront and s3 static
 ### HTTPS and SSL Certificates
 If you remember, during the Cloudfront chapter we had to make sure to update the URL to use HTTP, even though Cloudfront supports HTTPS. This is because our React client is calling our backend API at an HTTP endpoint which causes the initial HTTPS to fail. We could update our API endpoint to use HTTPS but that would require attaching an SSL certificate to the domain which would create too much complexity in our later workshops for most beginner students. Feel free to deep dive into these topics on your own!
 <iframe width="560" height="315" src="https://www.youtube.com/embed/j9QmMEWmcfo?si=xnYnwPVT8uTG6YXw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-

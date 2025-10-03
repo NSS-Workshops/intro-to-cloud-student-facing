@@ -68,4 +68,3 @@ This is how modern web apps are built — separating compute (EC2) from storage 
 - 📊 We use relational databases when our data is highly structured and consistent — and we want powerful querying tools like SQL.
 
 In the next chapter, we’ll walk through **provisioning your own PostgreSQL database on RDS** and connecting your API to it.
-

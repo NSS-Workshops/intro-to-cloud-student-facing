@@ -50,14 +50,14 @@ This approach makes S3 ideal for the web because:
 
 Let's define the essential terms you'll need to know:
 
-- **Bucket**: A container for storing objects. Think of it like a root folder with a globally unique name (like `my-website-files`).
+- **Bucket**: A container for storing objects. Think of it like a root folder with a globally unique name (like \`my-website-files\`).
 
 - **Object**: Any file you store in S3, along with its metadata. Objects can be HTML files, images, videos, etc.
 
-- **Key**: The unique name that identifies an object in a bucket. For example, `index.html` or `images/logo.png`.
+- **Key**: The unique name that identifies an object in a bucket. For example, \`index.html\` or \`images/logo.png\`.
 
 - **Object URL**: The web address where you can access an object. It follows this pattern:
-  `https://bucket-name.s3.region.amazonaws.com/key`
+  \`https://bucket-name.s3.region.amazonaws.com/key\`
 
 ## Why Use S3 for Website Hosting?
 
