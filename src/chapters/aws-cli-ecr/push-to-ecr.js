@@ -11,9 +11,9 @@ In this guide, you'll learn how to configure your AWS CLI using temporary creden
 
 2. Configure your AWS CLI profile. You can run this from any directory in your terminal.
 
-    \`\`\`bash
+    ```bash
     aws configure sso
-    \`\`\`
+    ```
 
 Follow the prompts to set up your sso profile. You will need the values listed here:
   - You can name the session anything eg \`workshop2-session\`
@@ -28,9 +28,9 @@ Follow the prompts to set up your sso profile. You will need the values listed h
 **What's happening here?** This is creating a local file \`~/.aws/cli/config\` with configurations that the cli will use when accessing AWS resources. You can find that local file and take a look at the contents. 
 
 Run:
-\`\`\`bash
+```bash
 export AWS_PROFILE=intro_to_cloud
-\`\`\`
+```
 
 This tells your terminal session to point to your newly created credentials and erases the need to add a --profile flag to the end of each command
 
@@ -60,9 +60,9 @@ Now create an ECR repository to store your Docker image:
 
 Run the following to authenticate Docker with your ECR registry:
 
-\`\`\`bash
+```bash
 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin [your_account_id].dkr.ecr.us-east-2.amazonaws.com
-\`\`\`
+```
 
 Replace \`[your_account_id]\` with your actual AWS account ID. You can find this by clicking on your username at the top right in the aws console. 
 
@@ -73,21 +73,21 @@ Navigate to your rock-of-ages-api project directory, then run the following comm
 
 1. Build the image
 
-\`\`\`bash
+```bash
 docker build --platform linux/amd64 -t rock-of-ages-api .
-\`\`\`
+```
 
 Adding --platform linux/amd64 ensures that the docker image will be compatible with our ec2 instance later on no matter what operating system your computer is using.
 
 2. Tag the image with the ECR repo URI
-\`\`\`bash
+```bash
 docker tag rock-of-ages-api:latest [your_account_id].dkr.ecr.us-east-2.amazonaws.com/rock-of-ages-api:latest
-\`\`\`
+```
 
 3. Push the image to ECR
-\`\`\`bash
+```bash
 docker push [your_account_id].dkr.ecr.us-east-2.amazonaws.com/rock-of-ages-api:latest
-\`\`\`
+```
 
 💡 After this step, your Docker image will be available in ECR and ready to be pulled and deployed from anywhere you have AWS access. You should be able to see your image in the repository in your aws console.
 

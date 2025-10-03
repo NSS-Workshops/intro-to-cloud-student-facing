@@ -11,14 +11,14 @@ Let's say you've just implemented a new feature to allow users to favorite other
 2. Remove the old container: \`docker rm api-container\`
 3. Rebuild the image with your changes: \`docker build -t rock-of-ages-api .\`
 4. Run the new container with all the parameters: 
-   \`\`\`bash
+   ```bash
    docker run -d \\
      --name api-container \\
      --network rock-of-ages-network \\
      --env-file .env.local \\
      -p 8000:8000 \\
      rock-of-ages-api
-   \`\`\`
+   ```
 5. Check the logs to ensure it started correctly: \`docker logs api-container\`
 
 **For the client change:**
@@ -26,14 +26,14 @@ Let's say you've just implemented a new feature to allow users to favorite other
 2. Remove it: \`docker rm client-container\`
 3. Rebuild: \`docker build -t rock-of-ages-client .\`
 4. Run with all parameters:
-   \`\`\`bash
+   ```bash
    docker run -d \\
      --name client-container \\
      --network rock-of-ages-network \\
      --env-file .env.local \\
      -p 3000:3000 \\
      rock-of-ages-client
-   \`\`\`
+   ```
 
 That's **10 commands** just to see a simple code change!
 
@@ -51,7 +51,7 @@ Let's say there's a bug in your new favorite rocks feature. Here's your current 
 1. Stop the API container: \`docker stop api-container\`
 2. Remove it: \`docker rm api-container\` 
 3. Run with Python debugger: 
-   \`\`\`bash
+   ```bash
    docker run -it \\
      --name api-container \\
      --network rock-of-ages-network \\
@@ -59,7 +59,7 @@ Let's say there's a bug in your new favorite rocks feature. Here's your current 
      -p 8000:8000 \\
      rock-of-ages-api \\
      python -m pdb manage.py runserver 0.0.0.0:8000
-   \`\`\`
+   ```
 4. Use terminal commands like \`n\`, \`s\`, \`pp rocks\` to navigate (no VS Code breakpoints!)
 5. When done, stop, remove, and restart normally
 
@@ -95,7 +95,7 @@ Think of it as "infrastructure as code" for your development environment.
 
 Before we set up Docker Compose, let's clean up all the containers, images, and networks from the previous section to avoid any conflicts:
 
-\`\`\`bash
+```bash
 # Stop and remove ALL containers
 docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
 
@@ -104,7 +104,7 @@ docker rmi -f $(docker images -q)
 
 # Remove all custom networks
 docker network prune -f
-\`\`\`
+```
 
 **What this does:**
 - Stops any running containers
@@ -118,14 +118,14 @@ This gives you a completely clean Docker environment to start fresh with Docker 
 
 #### ⚠️ **Receiving an error?**
 If you see this error: 
-\`\`\`bash
+```bash
 "docker stop" requires at least 1 argument.
 See 'docker stop --help'.
 
 Usage:  docker stop [OPTIONS] CONTAINER [CONTAINER...]
 
 Stop one or more running containers
-\`\`\`
+```
 This just means you don't have any containers running currently. Go ahead and move on to the next command.
 
 ---

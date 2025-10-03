@@ -67,21 +67,21 @@ let’s set up the **CI/CD workflow** in our repository.
 
 * In your local repository, create a directory:
 
-\`\`\`
+```
 .github/workflows/
-\`\`\`
+```
 
 * Inside this directory, create a new file named:
 
-\`\`\`
+```
 main.yml
-\`\`\`
+```
 
 * Paste the following workflow template into this file.
 
 ### Workflow Template
 
-\`\`\`yaml
+```yaml
 name: Build and Deploy Vite to S3
 
 on:
@@ -133,18 +133,18 @@ jobs:
             --paths "/*"
         env:
           AWS_REGION: \${{ secrets.AWS_REGION }}
-\`\`\`
+```
 
 3. **Commit the Changes**
 
 * Save the file.
 * In your terminal or Git client, commit the new workflow:
 
-\`\`\`
+```
 git add .github/workflows/main.yml
 git commit -m "Add CI/CD workflow for testing, building, and deploying to AWS"
 git push origin main
-\`\`\`
+```
 
 This will push the workflow to your GitHub repository. GitHub will automatically 
 recognize the new workflow file and start running it based on the configured 

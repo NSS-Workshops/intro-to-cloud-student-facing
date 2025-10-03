@@ -12,23 +12,23 @@ Docker Compose works best when all related services are organized under a single
 
 ### Step 1: Create the Development Directory
 
-\`\`\`bash
+```bash
 # Create a parent directory for your development environment
 mkdir rock-of-ages-development
 cd rock-of-ages-development
-\`\`\`
+```
 
 ### Step 2: Move Your Repositories
 
 Move (don't copy) your existing repositories into this directory:
 
-\`\`\`bash
+```bash
 # Move your API repository (use YOUR actual repo name)
 mv ~/path/to/your/rock-of-ages-api ./
 
 # Move your client repository (use YOUR actual repo name)
 mv ~/path/to/your/rock-of-ages-client ./
-\`\`\`
+```
 
 **Important**: Use your actual repository names! They might be:
 - \`rock-of-ages-api-yourname\`
@@ -36,7 +36,7 @@ mv ~/path/to/your/rock-of-ages-client ./
 - etc.
 
 Your structure should now look like:
-\`\`\`
+```
 rock-of-ages-development/
 ├── your-api-repo-name/
 │   ├── Dockerfile
@@ -48,7 +48,7 @@ rock-of-ages-development/
     ├── package.json
     ├── src/
     └── ... (other client files)
-\`\`\`
+```
 
 **Why this structure?** Docker Compose will use the parent directory as its "project" context, making it easy to reference both repositories and create a unified development environment.
 
@@ -58,7 +58,7 @@ rock-of-ages-development/
 
 In the \`rock-of-ages-development\` directory, create a file named \`docker-compose.yml\`:
 
-\`\`\`yaml
+```yaml
 version: '3.8'
 
 services:
@@ -123,7 +123,7 @@ volumes:
 networks:
   default:
     name: rock-of-ages-network
-\`\`\`
+```
 
 **⚠️ IMPORTANT**: 
 1. Replace \`your-api-repo-name\` with your actual API repository folder name (4 places)
@@ -139,21 +139,21 @@ Before running Docker Compose, confirm that your \`.env.local\` files still exis
 **Check your API's \`.env.local\` file:**
 
 It should contain:
-\`\`\`
+```
 DB_NAME=rockofages
 DB_USER=rockadmin
 DB_PASSWORD=localpassword123
 DB_HOST=postgres-db
 DB_PORT=5432
 SSLMODE=disable
-\`\`\`
+```
 
 **Check your client's \`.env.local\` file:**
 
 It should contain:
-\`\`\`
+```
 VITE_API_URL=http://localhost:8000
-\`\`\`
+```
 
 **Critical**: The database values in your \`.env.local\` MUST match what you put in the docker-compose.yml file!
 
@@ -199,11 +199,11 @@ Let's break down what each section does and compare it to the manual commands yo
 
 Volume mounts are what make hot reload possible:
 
-\`\`\`yaml
+```yaml
 volumes:
   - ./your-client-repo-name:/app  # Host code → Container code (live sync)
   - ./your-api-repo-name:/app     # Host code → Container code (live sync)
-\`\`\`
+```
 
 **How this works:**
 - **Edit a React file** on your host → Volume mount reflects change in container → Vite dev server detects change → **Instant hot reload in browser!**
@@ -217,10 +217,10 @@ volumes:
 
 Make sure you've verified your \`.env.local\` files exist (see Step 4), then:
 
-\`\`\`bash
+```bash
 # From the rock-of-ages-development directory
 docker compose up
-\`\`\`
+```
 
 That's it! This single command:
 - Creates the network automatically
@@ -233,7 +233,7 @@ That's it! This single command:
 #### Expected Output
 
 You should see output similar to this:
-\`\`\`
+```
 [+] Running 4/4
  ⠿ Network rock-of-ages-network        Created
  ⠿ Container postgres-db               Started
@@ -251,7 +251,7 @@ api-container     | Quit the server with CONTROL-C.
 client-container  | VITE v4.4.9  ready in 543 ms
 client-container  | ➜  Local:   http://localhost:3000/
 client-container  | ➜  Network: http://0.0.0.0:3000/
-\`\`\`
+```
 
 **✅ Success indicators:**
 - All containers show "Started"
@@ -267,14 +267,14 @@ Let's verify that your entire full-stack application is working perfectly:
 
 #### 1. Test the Database
 In a new terminal (keep docker compose running):
-\`\`\`bash
+```bash
 docker exec -it postgres-db psql -U rockadmin -d rockofages
-\`\`\`
+```
 
 Run this query:
-\`\`\`sql
+```sql
 SELECT COUNT(*) FROM rockapi_rock;
-\`\`\`
+```
 
 You should see 3 rocks (from the seed data). Type \`\\q\` to exit.
 
@@ -307,51 +307,51 @@ Let's see Docker Compose hot reload in action:
 
 If you prefer to run everything in the background without seeing the logs:
 
-\`\`\`bash
+```bash
 docker compose up -d
-\`\`\`
+```
 
 To see logs when running in background:
-\`\`\`bash
+```bash
 docker compose logs -f
-\`\`\`
+```
 
 To see logs for just one service:
-\`\`\`bash
+```bash
 docker compose logs api -f
-\`\`\`
+```
 
 ### Useful Docker Compose Commands
 
 Here are the most helpful commands with real-world scenarios:
 
 **Stop everything:**
-\`\`\`bash
+```bash
 docker compose down
-\`\`\`
+```
 *When to use*: End of your work day, switching to a different project, or when you need to free up system resources.
 
 **Rebuild images:**
-\`\`\`bash
+```bash
 docker compose build
-\`\`\`
+```
 *When to use*: After updating your Dockerfile, adding new dependencies to requirements.txt or package.json, or when Docker seems to be using an old cached version.
 
 **Restart a specific service:**
-\`\`\`bash
+```bash
 docker compose restart api
-\`\`\`
+```
 *When to use*: The API crashed or is acting weird, you've made configuration changes that require a restart, or you want to clear the application's memory.
 
 **View logs for a specific service:**
-\`\`\`bash
+```bash
 docker compose logs client
 docker compose logs api -f  # -f follows the logs in real-time
-\`\`\`
+```
 *When to use*: Debugging why the React app won't compile, checking API error messages, or monitoring database queries.
 
 **Run a command in a service:**
-\`\`\`bash
+```bash
 # Run Django migrations after adding a new model
 docker compose exec api pipenv run python manage.py makemigrations
 docker compose exec api pipenv run python manage.py migrate
@@ -364,13 +364,13 @@ docker compose exec client npm install axios
 
 # Access the database directly
 docker compose exec postgres-db psql -U rockadmin -d rockofages
-\`\`\`
+```
 *When to use*: Running migrations after model changes, debugging data issues, adding new dependencies, or running one-off scripts.
 
 **View running containers:**
-\`\`\`bash
+```bash
 docker compose ps
-\`\`\`
+```
 *When to use*: Checking which services are running, verifying all containers started successfully, or getting container names for other commands.
 
 ---

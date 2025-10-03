@@ -50,7 +50,7 @@ For our website to be publicly accessible, we need to set permissions:
 
 1. Go to the **Permissions** tab → **Bucket policy** → Click **Edit**, then paste:
 
-\`\`\`json
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -63,7 +63,7 @@ For our website to be publicly accessible, we need to set permissions:
     }
   ]
 }
-\`\`\`
+```
 2. In the pasted json, replace \`your-bucket-name-here\` with your bucket name. (ex. *rock-of-ages-frontend-origin-jms*)
 3. Click **Save changes**
 
@@ -75,9 +75,9 @@ Now let's get your React application files ready and upload them to your bucket:
 
 1. Open your terminal and navigate to your Rock of Ages client repository
 2. Run the build command to create optimized production files:
-   \`\`\`bash
+   ```bash
    npm run build
-   \`\`\`
+   ```
 3. This creates a \`dist\` folder containing all the files needed for your website
    - The \`dist\` folder (short for "distribution") contains optimized, minified versions of your code that are ready for production
    - These files will be served to users' browsers when they visit your website

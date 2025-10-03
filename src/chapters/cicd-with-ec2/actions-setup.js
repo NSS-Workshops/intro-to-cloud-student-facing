@@ -28,19 +28,19 @@ Now that we’ve prepared the AWS credentials and planned our deployment steps, 
 
 * In your local repository, create a directory with:
 
-\`\`\`
+```
 mkdir -p .github/workflows
-\`\`\`
+```
 
 * Inside this directory, create a new file named:
 
-\`\`\`
+```
 testBuildPush.yml
-\`\`\`
+```
 
 * Paste this workflow template into testBuildPush.yml
 
-\`\`\`yaml
+```yaml
 name: Build & Push Docker Image
 
 on:
@@ -100,7 +100,7 @@ jobs:
           docker push "$IMAGE"
 
 
-\`\`\`
+```
 
 #### What’s happening here?
 
@@ -112,13 +112,13 @@ You’re defining a GitHub Actions workflow that will trigger every time you pus
 
 * Inside the .github/workflows directory, create another file named:
 
-\`\`\`
+```
 deploy.yml
-\`\`\`
+```
 
 * Paste this workflow template into deploy.yml
 
-\`\`\`yaml
+```yaml
 name: Deploy to EC2
 
 on:
@@ -157,7 +157,7 @@ jobs:
               "docker run --pull always -d --name rock-of-ages-api -p 80:8000 \\"$IMAGE\\""
               ]' \\          
           --region \${{ secrets.AWS_REGION }}
-\`\`\`
+```
 
 #### What’s happening here?
 
@@ -169,11 +169,11 @@ This is a **manually-triggered** GitHub Actions workflow. When you run it, it se
 * Save the file.
 * In your terminal or Git client, commit the new workflow:
 
-\`\`\`
+```
 git add --all
 git commit -m "Add CI/CD workflow for testing, building, and deploying to AWS"
 git push origin main
-\`\`\`
+```
 
 #### What’s happening here?
 

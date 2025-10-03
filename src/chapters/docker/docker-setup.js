@@ -22,9 +22,9 @@ Before proceeding, make sure Docker is installed on your machine:
 - Open the docker application to see the docker desktop console. You will be able to see images and containers that you run locally here. You can also start and stop containers using this console for future reference but we will focus on using the command line for the rest of these instructions. 
 - After installing, verify Docker is running by typing:
 
-\`\`\`bash
+```bash
 docker --version
-\`\`\`
+```
 
 You should see output indicating the installed version.
 If you see any errors such as ERROR: Cannot connect to the Docker daemon. Navigate to applications to open docker and view the docker desktop console. Doing this usually resolves this error when you run the command again.
@@ -37,9 +37,9 @@ Take a look and explore the Dockerfile that you will find in the rock-of-ages-ap
 
 Once in your project directory in the terminal, build the Docker image:
 
-\`\`\`bash
+```bash
 docker build -t rock-of-ages-app .
-\`\`\`
+```
 
 This will read the instructions in the \`Dockerfile\` to build a new image locally. The -t flag allows you to tag the image with a name of your choosing. Here we are just naming it rock-of-ages-app.
 
@@ -49,9 +49,9 @@ This will read the instructions in the \`Dockerfile\` to build a new image local
 
 After building the image, start your container:
 
-\`\`\`bash
+```bash
 docker run -p 8000:8000 rock-of-ages-app
-\`\`\`
+```
 
 - This maps port 8000 on your computer to port 8000 in the container
 - You should now be able to visit [http://localhost:8000](http://localhost:8000) to see your application running
@@ -65,21 +65,21 @@ Press \`Ctrl + C\` in the terminal where it's running. This only removes docker 
 
 To see all running containers:
 
-\`\`\`bash
+```bash
 docker ps
-\`\`\`
+```
 
 To stop a container:
 
-\`\`\`bash
+```bash
 docker stop [container_id]
-\`\`\`
+```
 
 To start a stopped container again:
 
-\`\`\`bash
+```bash
 docker start -a [container_id]
-\`\`\`
+```
 
 Replace \`[container_id]\` with the actual ID shown by \`docker ps -a\`.
 Including the -a flag tells docker to run the container in the foreground so you can see the output logs. Alternatively you can omit the flag to run the container in the background to free up use of your terminal.

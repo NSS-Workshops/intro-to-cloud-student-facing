@@ -3,7 +3,7 @@
 
 Here’s the full Dockerfile we’ll explore:
 
-\`\`\`Dockerfile
+```Dockerfile
 # Use Python 3.8 as the base image
 FROM python:latest
 
@@ -41,7 +41,7 @@ EXPOSE 8000
 
 # Command to run scripts using the pipenv environment
 CMD pipenv run bash -c "./seed_database.sh && python manage.py runserver 0.0.0.0:8000"
-\`\`\`
+```
 
 Let’s break it down, line by line.
 
@@ -49,9 +49,9 @@ Let’s break it down, line by line.
 
 ## 📦 Base Image
 
-\`\`\`Dockerfile
+```Dockerfile
 FROM python:latest
-\`\`\`
+```
 
 This line tells Docker to start with the latest official Python image from Docker Hub. It’s a clean environment with Python already installed — a great starting point for any Python app.
 
@@ -59,11 +59,11 @@ This line tells Docker to start with the latest official Python image from Docke
 
 ## 🛠 Environment Variables
 
-\`\`\`Dockerfile
+```Dockerfile
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV PIPENV_VENV_IN_PROJECT=1
-\`\`\`
+```
 
 These environment variables do three useful things:
 
@@ -75,9 +75,9 @@ These environment variables do three useful things:
 
 ## 📁 Working Directory
 
-\`\`\`Dockerfile
+```Dockerfile
 WORKDIR /app
-\`\`\`
+```
 
 Sets the working directory to \`/app\`. All subsequent commands (like \`COPY\` and \`RUN\`) will execute relative to this directory.
 
@@ -85,11 +85,11 @@ Sets the working directory to \`/app\`. All subsequent commands (like \`COPY\` a
 
 ## 🧱 System Dependencies
 
-\`\`\`Dockerfile
+```Dockerfile
 RUN apt-get update && apt-get install -y --no-install-recommends \\
   gcc \\
   && rm -rf /var/lib/apt/lists/*
-\`\`\`
+```
 
 Installs the GNU Compiler Collection (\`gcc\`), which is required to build some Python packages (e.g. those that rely on C extensions like \`psycopg2\`). The cleanup step at the end keeps the image size small.
 
@@ -97,10 +97,10 @@ Installs the GNU Compiler Collection (\`gcc\`), which is required to build some 
 
 ## 📦 Python Dependency Manager
 
-\`\`\`Dockerfile
+```Dockerfile
 RUN pip install --upgrade pip && \\
   pip install pipenv
-\`\`\`
+```
 
 Upgrades pip and installs pipenv — the tool this project uses to manage Python packages and virtual environments.
 
@@ -108,9 +108,9 @@ Upgrades pip and installs pipenv — the tool this project uses to manage Python
 
 ## 📄 Pipfile and Lockfile
 
-\`\`\`Dockerfile
+```Dockerfile
 COPY Pipfile* /app/
-\`\`\`
+```
 
 Copies your \`Pipfile\` and \`Pipfile.lock\` to the container. Doing this before copying all source code helps Docker cache the dependencies layer efficiently.
 
@@ -118,9 +118,9 @@ Copies your \`Pipfile\` and \`Pipfile.lock\` to the container. Doing this before
 
 ## 📚 Install Python Dependencies
 
-\`\`\`Dockerfile
+```Dockerfile
 RUN pipenv install
-\`\`\`
+```
 
 Installs the project dependencies listed in the \`Pipfile\` into the virtual environment created by pipenv.
 
@@ -128,9 +128,9 @@ Installs the project dependencies listed in the \`Pipfile\` into the virtual env
 
 ## 📁 Copy the Source Code
 
-\`\`\`Dockerfile
+```Dockerfile
 COPY . /app/
-\`\`\`
+```
 
 Copies the rest of your backend code into the container's working directory.
 
@@ -138,9 +138,9 @@ Copies the rest of your backend code into the container's working directory.
 
 ## ✅ Make the Seed Script Executable
 
-\`\`\`Dockerfile
+```Dockerfile
 RUN chmod +x /app/seed_database.sh
-\`\`\`
+```
 
 Ensures that your database seeding script has the necessary permissions to run inside the container.
 
@@ -148,9 +148,9 @@ Ensures that your database seeding script has the necessary permissions to run i
 
 ## 🌐 Expose the Port
 
-\`\`\`Dockerfile
+```Dockerfile
 EXPOSE 8000
-\`\`\`
+```
 
 Tells Docker that this container will serve HTTP traffic on port 8000 — which matches the Django development server default.
 
@@ -158,9 +158,9 @@ Tells Docker that this container will serve HTTP traffic on port 8000 — which 
 
 ## 🚀 Start the App
 
-\`\`\`Dockerfile
+```Dockerfile
 CMD pipenv run bash -c "./seed_database.sh && python manage.py runserver 0.0.0.0:8000"
-\`\`\`
+```
 
 This is the main entrypoint for the container:
 1. Seeds the database

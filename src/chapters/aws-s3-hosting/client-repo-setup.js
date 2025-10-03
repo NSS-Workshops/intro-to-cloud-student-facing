@@ -28,20 +28,20 @@ For this workshop, we'll be using a pre-built React application created with Vit
 2. Click the "Fork" button in the top-right corner to create your own copy of the repository
 
 3. Once forked, clone your repository to your local machine:
-   \`\`\`bash
+   ```bash
    git clone https://github.com/YOUR-USERNAME/rock-of-ages-client.git
    cd rock-of-ages-client
-   \`\`\`
+   ```
 
 4. Install the dependencies:
-   \`\`\`bash
+   ```bash
    npm install
-   \`\`\`
+   ```
 
 5. Start the development server:
-   \`\`\`bash
+   ```bash
    npm run dev
-   \`\`\`
+   ```
 
 6. Open your browser and navigate to [http://localhost:5173](http://localhost:5173) to see the application running
 

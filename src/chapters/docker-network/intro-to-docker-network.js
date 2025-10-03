@@ -58,32 +58,32 @@ Before we build our multi-container environment, let's understand how containers
 
 By default, Docker containers are completely isolated - they can't see or communicate with each other. Think of it like having separate apartments in a building with no hallways connecting them.
 
-\`\`\`bash
+```bash
 # These containers CAN'T communicate
 docker run --name api-container django-api
 docker run --name db-container postgres
-\`\`\`
+```
 
 ### Docker Networks: Creating Communication Channels
 
 A Docker network is like adding hallways between apartments - containers on the same network can find and communicate with each other using their container names as addresses.
 
-\`\`\`bash
+```bash
 # Create a network (the "hallway")
 docker network create my-app-network
 
 # Containers on the same network CAN communicate
 docker run --name api-container --network my-app-network django-api
 docker run --name db-container --network my-app-network postgres
-\`\`\`
+```
 
 ### Container-to-Container Communication
 
 Within a Docker network, containers reach each other using **container names as hostnames**:
 
-\`\`\`python
+```python
 # In your API container's configuration
 DATABASE_HOST = "db-container"  # Uses container name, not localhost!
-\`\`\`
+```
 
 **Important**: Your React app JavaScript runs in your browser, not in the container, so it still uses \`localhost\` to reach the API. Only server-to-server communication uses container names.

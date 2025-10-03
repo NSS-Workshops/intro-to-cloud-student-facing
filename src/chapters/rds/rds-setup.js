@@ -93,9 +93,9 @@ When moving from SQLite to PostgreSQL, we need to make several modifications:
 Let's examine each change and understand why it's necessary.
 
 ### Navigate to API Repo
-\`\`\`bash
+```bash
 cd path/to/rock-of-ages-api
-\`\`\`
+```
 
 ### Update Dependencies (Pipfile)
 
@@ -106,7 +106,7 @@ cd path/to/rock-of-ages-api
 
 Edit your \`Pipfile\` to add PostgreSQL support:
 
-\`\`\`toml
+```toml
 [[source]]
 url = "https://pypi.org/simple"
 verify_ssl = true
@@ -125,7 +125,7 @@ psycopg2-binary = "*"  # ← Add this line
 
 [requires]
 python_version = "*"
-\`\`\`
+```
 
 ### Update Django Settings
 
@@ -144,13 +144,13 @@ python_version = "*"
 
 Edit \`rockproject/settings.py\` to support PostgreSQL:
 **Add these imports at the top:**
-\`\`\`python
+```python
 from pathlib import Path
 import os # ← Add this line
 
-\`\`\`
+```
 Scroll down and replace \`DATABASES\` with:
-\`\`\`python
+```python
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql',
@@ -164,7 +164,7 @@ DATABASES = {
         }
     }
 }
-\`\`\`
+```
 
 ### Environment Variables: Keeping Secrets Safe
 
@@ -193,7 +193,7 @@ This script automates the process of setting up your database tables and loading
 
 Replace the entire contents of \`seed_database.sh\` to remove references to sqlite:
 
-\`\`\`bash
+```bash
 #!/bin/bash
 
 echo "🗄️  Setting up PostgreSQL database..."
@@ -218,13 +218,13 @@ python3 manage.py loaddata types
 python3 manage.py loaddata rocks
 
 echo "✅ Database setup complete!"
-\`\`\`
+```
 
 ### Update GitHub Actions
 
 In \`.github/workflows/deploy.yml\` replace the whole file with:
 
-\`\`\`yaml
+```yaml
 name: Deploy to EC2
 
 on:
@@ -263,7 +263,7 @@ jobs:
               "docker run --pull always -d --name rock-of-ages-api -p 80:8000 -e DB_NAME=\${{ secrets.DB_NAME }} -e DB_USER=\${{ secrets.DB_USER }} -e DB_PASSWORD=\${{ secrets.DB_PASSWORD }} -e DB_HOST=\${{ secrets.DB_HOST }} -e DB_PORT=\${{ secrets.DB_PORT }} \\"$IMAGE\\""
             ]' \\
             --region \${{ secrets.AWS_REGION }}
-\`\`\`
+```
 
 #### What’s happening here?
 We are running the same docker commands in our ec2 instance but this time with our database environment variables using the -e flag. 
