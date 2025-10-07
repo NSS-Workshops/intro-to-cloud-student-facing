@@ -94,7 +94,7 @@ Let’s break down Docker’s architecture into bite-sized concepts:
 - **Docker Hub**: A cloud registry of container images (think GitHub, but for Docker).
 - **Docker CLI**: The command-line interface you’ll use to build images, run containers, and manage everything.
 
-When you run \`docker build\`, Docker reads your Dockerfile and creates an image. You can then run that image with \`docker run\` to create a container.
+When you run `docker build`, Docker reads your Dockerfile and creates an image. You can then run that image with `docker run` to create a container.
 
 ## Why Docker for the Rock of Ages App?
 

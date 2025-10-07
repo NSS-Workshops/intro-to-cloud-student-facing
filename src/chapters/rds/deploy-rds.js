@@ -54,21 +54,21 @@ Before testing through the API, let's verify the database setup by connecting di
 2. **Type**: "PostgreSQL: Add Connection"
 3. **Fill in connection details**:
    - **Hostname**: Your RDS endpoint 
-   - **User**: \`rockadmin\`
+   - **User**: `rockadmin`
    - **Password**: Your RDS password
-   - **Port**: \`5432\`
-   - **Database display**: \`rockofages\`
-   - **SSL**: \`Use Secure Connection\`
+   - **Port**: `5432`
+   - **Database display**: `rockofages`
+   - **SSL**: `Use Secure Connection`
 
 #### Explore Your Database
 
 Once connected, you should see your database in the PostgreSQL Explorer panel. Expand the sections to see:
 
 **📁 Schemas → public → Tables**
-- \`auth_user\` (Django users)
-- \`authtoken_token\` (API authentication tokens)
-- \`rockapi_type\` (Rock types: Igneous, Metamorphic, etc.)
-- \`rockapi_rock\` (Individual rocks with owners)
+- `auth_user` (Django users)
+- `authtoken_token` (API authentication tokens)
+- `rockapi_type` (Rock types: Igneous, Metamorphic, etc.)
+- `rockapi_rock` (Individual rocks with owners)
 
 #### Run Test Queries
 
@@ -110,8 +110,8 @@ SELECT
 **✅ If you see the expected data, your database setup is perfect!**
 
 **Understanding what you're seeing:**
-- **Django tables**: Tables starting with \`auth_\` are Django's built-in user management
-- **Your app tables**: Tables starting with \`rockapi_\` are from your Rock of Ages models
+- **Django tables**: Tables starting with `auth_` are Django's built-in user management
+- **Your app tables**: Tables starting with `rockapi_` are from your Rock of Ages models
 - **Relationships**: The JOIN queries show how your data connects across tables
 - **Data integrity**: All foreign key relationships are working correctly
 
@@ -128,7 +128,7 @@ Now test your API to ensure it's correctly reading from the database:
 
 **Test: Register a New User**
 1. **Method**: POST
-2. **URL**: \`http://<your-ec2-endpoint>/register\`
+2. **URL**: `http://<your-ec2-endpoint>/register`
 3. **Body** (JSON):
    ```json
    {

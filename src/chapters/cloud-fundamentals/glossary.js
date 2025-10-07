@@ -18,7 +18,7 @@ This glossary provides definitions for key terms introduced in the Cloud Fundame
 | CloudFront                | Content Delivery Network (CDN) that delivers content with low latency via edge locations.   |
 | EC2                       | Scalable virtual servers used to run applications in the cloud.                             |
 | RDS                       | Managed database service supporting engines like MySQL and PostgreSQL.                      |
-| Region                    | A physical AWS location containing multiple availability zones (e.g., \`us-east-2\`).         |
+| Region                    | A physical AWS location containing multiple availability zones (e.g., `us-east-2`).         |
 | Availability Zone (AZ)    | An isolated location within a region that helps build resilient applications.               |
 | Edge Location             | Global endpoints for CloudFront caching, enabling faster content delivery.                 |
 | AWS Management Console    | Web-based user interface for managing AWS services and resources.                          |

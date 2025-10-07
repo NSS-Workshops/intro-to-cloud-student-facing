@@ -20,13 +20,13 @@ Fill out the database creation form with these settings:
 - Select **Single-AZ DB instance deployment**
 
 **Settings:**
-- **DB instance identifier**: \`rock-of-ages-db\`
-- **Master username**: \`rockadmin\`
+- **DB instance identifier**: `rock-of-ages-db`
+- **Master username**: `rockadmin`
 - **Master password**: Choose and save a secure password
 - **Confirm password**: Re-enter your password
 
 **DB Instance Configuration:**
-- **Burstable classes**: \`db.t4g.micro\` (free tier eligible)
+- **Burstable classes**: `db.t4g.micro` (free tier eligible)
 
 **Storage:**
 - **Storage type**: General Purpose SSD (gp2)
@@ -41,7 +41,7 @@ Fill out the database creation form with these settings:
 - **Subnet group**: default
 - **Public access**: Yes (for course use)
 - **VPC security group**: Create new
-- **Group name**: \`rock-of-ages-db-sg\`
+- **Group name**: `rock-of-ages-db-sg`
 - **Availability Zone**: no preference (make sure you are already in Ohio at the top of the console)
 - **Port**: 5432
 
@@ -53,7 +53,7 @@ Fill out the database creation form with these settings:
 - **Additional Monitoring Settings**: Disable Enhanced Monitoring
 
 **Additional Configuration:**
-- **Initial DB name**: \`rockofages\`
+- **Initial DB name**: `rockofages`
 - **Backup retention period**: 1 day
 - Leave everything else default 
 
@@ -64,7 +64,7 @@ Fill out the database creation form with these settings:
 
 ### Configure Security Group
 1. Go to **EC2 Console** → **Security Groups**
-2. Find \`rock-of-ages-db-sg\`
+2. Find `rock-of-ages-db-sg`
 3. Edit inbound rules:
     - Type: PostgreSQL
     - Port: 5432
@@ -100,11 +100,11 @@ cd path/to/rock-of-ages-api
 ### Update Dependencies (Pipfile)
 
 **Why we need new dependencies:**
-- **\`psycopg2-binary\`**: This is like a translator between Django (Python) and PostgreSQL. Django can talk to SQLite out of the box, but needs this special adapter for PostgreSQL.
+- **`psycopg2-binary`**: This is like a translator between Django (Python) and PostgreSQL. Django can talk to SQLite out of the box, but needs this special adapter for PostgreSQL.
 
-**Real-world analogy**: If Django speaks English and PostgreSQL speaks French, \`psycopg2-binary\` is the translator that allows them to communicate.
+**Real-world analogy**: If Django speaks English and PostgreSQL speaks French, `psycopg2-binary` is the translator that allows them to communicate.
 
-Edit your \`Pipfile\` to add PostgreSQL support:
+Edit your `Pipfile` to add PostgreSQL support:
 
 ```toml
 [[source]]
@@ -140,16 +140,16 @@ python_version = "*"
 - **What's my password**? (PASSWORD)
 - **Which database** should I use? (NAME)
 
-**Security Note**: We use \`os.getenv()\` instead of hardcoding values because database passwords should never be stored directly in code files.
+**Security Note**: We use `os.getenv()` instead of hardcoding values because database passwords should never be stored directly in code files.
 
-Edit \`rockproject/settings.py\` to support PostgreSQL:
+Edit `rockproject/settings.py` to support PostgreSQL:
 **Add these imports at the top:**
 ```python
 from pathlib import Path
 import os # ← Add this line
 
 ```
-Scroll down and replace \`DATABASES\` with:
+Scroll down and replace `DATABASES` with:
 ```python
 DATABASES = {
     'default': {
@@ -181,7 +181,7 @@ DATABASES = {
 **How it works**:
 1. Save environment variables in in github secrets (Coming up in following steps).
 2. Docker run commands will reference these to set environment variables on the container
-3. \`os.getenv('DB_PASSWORD')\` retrieves the password from environment variables
+3. `os.getenv('DB_PASSWORD')` retrieves the password from environment variables
 4. Django uses these values to connect to the database
 
 
@@ -191,7 +191,7 @@ DATABASES = {
 This script automates the process of setting up your database tables and loading sample data. Think of it like moving into a new house - you need to build the rooms (create tables) before you can put furniture in them (load data).
 
 
-Replace the entire contents of \`seed_database.sh\` to remove references to sqlite:
+Replace the entire contents of `seed_database.sh` to remove references to sqlite:
 
 ```bash
 #!/bin/bash
@@ -222,7 +222,7 @@ echo "✅ Database setup complete!"
 
 ### Update GitHub Actions
 
-In \`.github/workflows/deploy.yml\` replace the whole file with:
+In `.github/workflows/deploy.yml` replace the whole file with:
 
 ```yaml
 name: Deploy to EC2
@@ -243,26 +243,26 @@ jobs:
 
       - uses: aws-actions/configure-aws-credentials@v3
         with:
-          role-to-assume: \${{ secrets.OIDC_ROLE_TO_ASSUME }}
-          aws-region: \${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.OIDC_ROLE_TO_ASSUME }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - uses: aws-actions/amazon-ecr-login@v2
 
       - name: Trigger remote deployment on EC2 via SSM
         run: |
-          aws ssm send-command \\
-            --instance-ids "\${{ secrets.EC2_INSTANCE_ID }}" \\
-            --document-name "AWS-RunShellScript" \\
-            --comment "Manual deploy from GitHub Actions" \\
+          aws ssm send-command \
+            --instance-ids "${{ secrets.EC2_INSTANCE_ID }}" \
+            --document-name "AWS-RunShellScript" \
+            --comment "Manual deploy from GitHub Actions" \
             --parameters commands='[
-              "IMAGE=\\"\${{ secrets.ECR_REGISTRY }}/\${{ secrets.ECR_REPOSITORY }}:latest\\"",
-              "aws ecr get-login-password --region \${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin \${{ secrets.ECR_REGISTRY }}",
-              "docker pull \\"$IMAGE\\"",
+              "IMAGE=\"${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPOSITORY }}:latest\"",
+              "aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECR_REGISTRY }}",
+              "docker pull \"$IMAGE\"",
               "docker stop rock-of-ages-api || true",
               "docker rm rock-of-ages-api || true",
-              "docker run --pull always -d --name rock-of-ages-api -p 80:8000 -e DB_NAME=\${{ secrets.DB_NAME }} -e DB_USER=\${{ secrets.DB_USER }} -e DB_PASSWORD=\${{ secrets.DB_PASSWORD }} -e DB_HOST=\${{ secrets.DB_HOST }} -e DB_PORT=\${{ secrets.DB_PORT }} \\"$IMAGE\\""
-            ]' \\
-            --region \${{ secrets.AWS_REGION }}
+              "docker run --pull always -d --name rock-of-ages-api -p 80:8000 -e DB_NAME=${{ secrets.DB_NAME }} -e DB_USER=${{ secrets.DB_USER }} -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} -e DB_HOST=${{ secrets.DB_HOST }} -e DB_PORT=${{ secrets.DB_PORT }} \"$IMAGE\""
+            ]' \
+            --region ${{ secrets.AWS_REGION }}
 ```
 
 #### What’s happening here?

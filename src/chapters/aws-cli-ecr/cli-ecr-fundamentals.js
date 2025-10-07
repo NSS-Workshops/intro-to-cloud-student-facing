@@ -45,11 +45,11 @@ Think of it like **Docker Hub**, but private and integrated with the rest of you
 Here's the big picture of how you'll use the AWS CLI and ECR together:
 
 1. **Authenticate** your Docker CLI to access ECR:
-   \`aws ecr get-login-password\` → passed to Docker to sign in
+   `aws ecr get-login-password` → passed to Docker to sign in
 
 2. **Tag** your Docker image with your ECR repository URL
 
-3. **Push** the image to ECR using \`docker push\`
+3. **Push** the image to ECR using `docker push`
 
 Once it’s in ECR, your image is available to deploy in other AWS services like ECS or EC2.
 
