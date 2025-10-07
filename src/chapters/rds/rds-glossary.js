@@ -1,9 +1,3 @@
-export const rdsAndStorageGlossaryChapter = {
-  id: 'rds-and-storage-glossary',
-  title: 'Glossary',
-  sectionId: 'rds',
-  previousChapterId: "workshop3-rds-deploy", 
-  content: `
 
 | Term | Description |
 |------|-------------|
@@ -41,6 +35,3 @@ export const rdsAndStorageGlossaryChapter = {
 [Microservices](https://aws.amazon.com/microservices/)
 [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
 [Observability and Monitoring](https://docs.aws.amazon.com/wellarchitected/latest/management-and-governance-guide/aws-observability-tools.html)
-`
-,
-};

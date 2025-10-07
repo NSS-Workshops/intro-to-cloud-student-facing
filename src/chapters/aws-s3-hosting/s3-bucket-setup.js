@@ -1,9 +1,4 @@
-export const s3BucketSetupChapter = {
-  id: "s3-bucket-setup",
-  title: "Setting up the S3 Bucket",
-  sectionId: "aws-s3-hosting",
-  previousChapterId: "s3-fundamentals",
-  content: `## Creating and Configuring Your S3 Bucket for Website Hosting
+## Creating and Configuring Your S3 Bucket for Website Hosting
 
 Now that we understand what S3 is and how it works, let's get our hands dirty by creating and configuring our own S3 bucket to host our Rock of Ages application.
 
@@ -55,7 +50,7 @@ For our website to be publicly accessible, we need to set permissions:
 
 1. Go to the **Permissions** tab → **Bucket policy** → Click **Edit**, then paste:
 
-\`\`\`json
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -68,7 +63,7 @@ For our website to be publicly accessible, we need to set permissions:
     }
   ]
 }
-\`\`\`
+```
 2. In the pasted json, replace \`your-bucket-name-here\` with your bucket name. (ex. *rock-of-ages-frontend-origin-jms*)
 3. Click **Save changes**
 
@@ -80,9 +75,9 @@ Now let's get your React application files ready and upload them to your bucket:
 
 1. Open your terminal and navigate to your Rock of Ages client repository
 2. Run the build command to create optimized production files:
-   \`\`\`bash
+   ```bash
    npm run build
-   \`\`\`
+   ```
 3. This creates a \`dist\` folder containing all the files needed for your website
    - The \`dist\` folder (short for "distribution") contains optimized, minified versions of your code that are ready for production
    - These files will be served to users' browsers when they visit your website
@@ -122,6 +117,4 @@ In this chapter, you've:
 - Built and uploaded your React application
 - Accessed your live website via its S3 endpoint
 
-You've successfully deployed your first application to the AWS cloud! In the next modules, we'll enhance this setup with CloudFront for better performance and GitHub Actions for automated deployments.`,
-  exercise: null,
-}
+You've successfully deployed your first application to the AWS cloud! In the next modules, we'll enhance this setup with CloudFront for better performance and GitHub Actions for automated deployments.

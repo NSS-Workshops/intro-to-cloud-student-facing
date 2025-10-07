@@ -1,9 +1,4 @@
-export const preReqChapter = {
-  id: 'pre-requisites',
-  title: 'Pre-Requisites',
-  sectionId: 'introduction',
-  previousChapterId: null,
-  content: `Before the first day of the course please make sure you have these pre-requisites set up on your computer. 
+Before the first day of the course please make sure you have these pre-requisites set up on your computer. 
 
 
 - Have LTS version of Node installed: [Node Installation](https://nodejs.org/en)
@@ -15,6 +10,3 @@ export const preReqChapter = {
 
 How to install WSL for Windows users: 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ig9_tWL3ZGI?si=YXEAYEkVojtb0Dic" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-`,
-  exercise: null
-};

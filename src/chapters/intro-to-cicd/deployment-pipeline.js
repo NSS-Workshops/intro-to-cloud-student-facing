@@ -1,10 +1,4 @@
-import ghAction from "../../assets/gh_action.jpg";
-export const deploymentPipelineChapter = {
-  id: 'deployment-pipeline',
-  title: 'Automating CI/CD for Rock of Ages Frontend with GitHub Actions',
-  sectionId: 'intro-to-cicd',
-  previousChapterId: 'github-actions-basics',
-  content: `In this chapter, we’ll build a complete CI/CD pipeline using GitHub Actions to automatically 
+In this chapter, we’ll build a complete CI/CD pipeline using GitHub Actions to automatically 
   deploy our Rock of Ages frontend application to AWS S3. This pipeline will:
 
 * Run tests and generate test coverage
@@ -73,21 +67,21 @@ let’s set up the **CI/CD workflow** in our repository.
 
 * In your local repository, create a directory:
 
-\`\`\`
+```
 .github/workflows/
-\`\`\`
+```
 
 * Inside this directory, create a new file named:
 
-\`\`\`
+```
 main.yml
-\`\`\`
+```
 
 * Paste the following workflow template into this file.
 
 ### Workflow Template
 
-\`\`\`yaml
+```yaml
 name: Build and Deploy Vite to S3
 
 on:
@@ -139,18 +133,18 @@ jobs:
             --paths "/*"
         env:
           AWS_REGION: \${{ secrets.AWS_REGION }}
-\`\`\`
+```
 
 3. **Commit the Changes**
 
 * Save the file.
 * In your terminal or Git client, commit the new workflow:
 
-\`\`\`
+```
 git add .github/workflows/main.yml
 git commit -m "Add CI/CD workflow for testing, building, and deploying to AWS"
 git push origin main
-\`\`\`
+```
 
 This will push the workflow to your GitHub repository. GitHub will automatically 
 recognize the new workflow file and start running it based on the configured 
@@ -189,6 +183,3 @@ Test Failures
 
 * Check environment-specific code
 * Debug async/timing issues
-`,
-  exercise: null,
-};

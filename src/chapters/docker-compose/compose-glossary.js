@@ -1,9 +1,3 @@
-export const dockerComposeGlossaryChapter = {
-  id: "compose-glossary",
-  title: "Glossary",
-  sectionId: "docker-compose",
-  previousChapterId: "workshop3-dev-containers-setup",
-  content: `
 
 This glossary provides definitions for key terms introduced in the Docker Compose and Dev Containers module.
 
@@ -18,6 +12,4 @@ This glossary provides definitions for key terms introduced in the Docker Compos
 | **Dev Containers** | A VS Code extension that lets you develop inside Docker containers. Your IDE runs inside the container, giving you the same debugging experience as local development. |
 | **devcontainer.json** | Configuration file that tells VS Code how to connect to and set up a development container, including which extensions to install and how to configure the environment. |
 | **overrideCommand** | A Dev Container setting that prevents the automatic command from docker-compose.yml from running, giving you manual control over when to start services. |
-| **Infrastructure as Code** | Defining your development environment setup in code (docker-compose.yml) rather than manual setup instructions, making it reproducible and version-controlled. |`,
-  exercise: null,
-}
+| **Infrastructure as Code** | Defining your development environment setup in code (docker-compose.yml) rather than manual setup instructions, making it reproducible and version-controlled. |

@@ -1,9 +1,3 @@
-export const devContainersSetupChapter = {
-  id: "workshop3-dev-containers-setup",
-  title: "Setting up Dev Containers",
-  sectionId: "docker-compose",
-  previousChapterId: "workshop3-docker-compose-setup",
-  content: `
 # Debugging with Dev Containers
 
 ## Setting Up VS Code Dev Containers
@@ -33,17 +27,17 @@ By the end of this section, you'll be able to:
 Here's the key insight: **Dev Containers move your VS Code development environment inside the container**.
 
 **Without Dev Containers:**
-\`\`\`
+```
 Your Computer: VS Code + Python Debugger
      ↕ (barrier)
 Container: Django App + Python Runtime
-\`\`\`
+```
 
 **With Dev Containers:**
-\`\`\`
+```
 Your Computer: VS Code UI only
 Container: VS Code Server + Python Debugger + Django App + Python Runtime
-\`\`\`
+```
 
 This means you get the exact same debugging experience as local development, but everything runs in your containerized environment!
 
@@ -51,14 +45,14 @@ This means you get the exact same debugging experience as local development, but
 
 We need to tell VS Code how to connect to our API container. In your API repository, create the configuration:
 
-\`\`\`bash
+```bash
 # From your rock-of-ages-development directory
 mkdir ./your-api-repo-name/.devcontainer
-\`\`\`
+```
 
 Create \`./your-api-repo-name/.devcontainer/devcontainer.json\`:
 
-\`\`\`json
+```json
 {
   "name": "Rock of Ages API",
   "dockerComposeFile": "../../docker-compose.yml",
@@ -89,7 +83,7 @@ Create \`./your-api-repo-name/.devcontainer/devcontainer.json\`:
   "python.pythonPath": "/usr/local/bin/python"
   }
 }
-\`\`\`
+```
 
 **Key settings explained:**
 - \`"dockerComposeFile": "../../docker-compose.yml"\` - Points to your compose file
@@ -102,14 +96,14 @@ Create \`./your-api-repo-name/.devcontainer/devcontainer.json\`:
 For debugging, we want to start only the database and client and control the API ourselves:
 
 1. **Stop your full stack** if it's running:
-   \`\`\`bash
+   ```bash
    docker compose down
-   \`\`\`
+   ```
 
 2. **Start only database and client**:
-   \`\`\`bash
+   ```bash
    docker compose up postgres-db client
-   \`\`\`
+   ```
    
    This gives you:
    - ✅ Database running and ready
@@ -130,11 +124,11 @@ VS Code will:
 5. Give you a terminal that's inside the container
 
 You'll see output like:
-\`\`\`
+```
 [7177 ms] Start: Run in container: /bin/sh -c pipenv install --dev
 Installing dependencies from Pipfile.lock...
 Done. Press any key to close the terminal.
-\`\`\`
+```
 
 **Important**: You might see a popup about port forwarding (like port 5474) - this is normal VS Code communication. Just dismiss it.
 
@@ -144,7 +138,7 @@ Now we need to configure VS Code to debug Django properly. Create a debug config
 
 **Create \`.vscode/launch.json\` in your API repo:**
 
-\`\`\`json
+```json
 {
     "version": "0.2.0",
     "configurations": [
@@ -164,7 +158,7 @@ Now we need to configure VS Code to debug Django properly. Create a debug config
         }
     ]
 }
-\`\`\`
+```
 
 **What this configuration does:**
 - \`"program": "\${workspaceFolder}/manage.py"\` - Tells VS Code to run Django's manage.py
@@ -183,11 +177,11 @@ Here's the moment of truth! We'll start Django with the integrated debugger:
    Go to the **Run and Debug** panel (Ctrl+Shift+D), select "Django: Debug Server", and click the green play button
 
 2. **You should see Django start** in the **Integrated Terminal**:
-   \`\`\`
+   ```
    Django version 5.2.4, using settings 'rockproject.settings'
    Starting development server at http://0.0.0.0:8000/
    Quit the server with CONTROL-C.
-   \`\`\`
+   ```
 
 3. **Notice the debug toolbar** at the top of VS Code - this means the debugger is active!
 
@@ -231,13 +225,13 @@ Now let's see how API debugging handles changes differently:
 1. **Stop the debugger** (Ctrl+C or click the stop button in VS Code) 
 2. **Open** \`rockapi/views/rock_view.py\`
 3. **Add a print statement** in the \`list\` method:
-   \`\`\`python
+   ```python
    def list(self, request):
        """Handle GET requests to get all rocks"""
        print("🔍 DEBUG: Fetching rocks from containerized database!")
        rocks = Rock.objects.all()
        # rest of your existing code
-   \`\`\`
+   ```
 4. **Save the file**
 5. **Press F5 again** to restart with your changes
 6. **In your browser**, navigate to the rocks page
@@ -295,10 +289,10 @@ Perfect for:
 
 The key difference is **live volume mounts**:
 
-\`\`\`yaml
+```yaml
 volumes:
   - ./your-client-repo-name:/app  # Live sync: Your edits → Container immediately
-\`\`\`
+```
 
 **Manual Setup**: Code copied once during \`docker build\` → Static forever  
 **Docker Compose**: Live volume mounts → **Save file = Instant container update**
@@ -318,6 +312,3 @@ Congratulations! You've just set up the same development workflow used by teams 
 **Production-Like Architecture Running Locally**: Your development environment mirrors your production setup with complete safety and isolation.
 
 **Welcome to containerized development!** 🚀
-`,
-  exercise: null,
-}

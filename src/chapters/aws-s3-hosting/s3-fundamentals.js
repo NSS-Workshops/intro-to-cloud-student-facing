@@ -1,9 +1,4 @@
-export const s3FundamentalsChapter = {
-  id: "s3-fundamentals",
-  title: "S3 Fundamentals",
-  sectionId: "aws-s3-hosting",
-  previousChapterId: "client-repo-setup",
-  content: `## What is S3?
+## What is S3?
 
 S3 (Simple Storage Service) is Amazon's solution for storing files in the cloud. It's one of the oldest and most reliable AWS services, and it's perfect for hosting websites like our React application.
 
@@ -83,6 +78,3 @@ In the next chapter, we'll create and configure an S3 bucket to host our Rock of
 - Make your website accessible to the public
 
 The concepts we've covered here will make more sense as you start working hands-on with S3 in the next chapter.
-`,
-  exercise: null,
-}

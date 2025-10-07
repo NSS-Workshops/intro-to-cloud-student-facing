@@ -1,9 +1,4 @@
-export const advancedCicdWithDockerChapter = {
-  id: 'advanced-cicd-docker',
-  title: 'Advancing CICD Concepts',
-  sectionId: 'cicd-ec2-docker',
-  previousChapterId: null,
-  content: `## Upgrading from Simple Workflows to Production-Ready CI/CD
+## Upgrading from Simple Workflows to Production-Ready CI/CD
 
 In our earlier CI/CD workflow, we kept things simple — run tests whenever code changes, using GitHub Actions and your raw application environment.
 
@@ -102,6 +97,3 @@ In your Development career you'll see teams approach CI/CD in different ways. It
 ### 📚 Up Next
 
 In the next chapter, we’ll walk through how to set up github actions for the rock-of-ages-api using these more advanced concepts. 
-`,
-  exercise: null,
-};

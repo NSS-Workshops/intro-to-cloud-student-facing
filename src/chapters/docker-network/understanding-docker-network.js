@@ -1,28 +1,22 @@
-export const understandingDNChapter = {
-  id: "workshop3-understanding-docker-network",
-  title: "Understanding the Docker Network",
-  sectionId: "docker-network",
-  previousChapterId: "workshop3-setting-up-docker-network",
-  content: `
 
 ## Understanding Your Complete Architecture
 
 ### Network Communication Flow
-\`\`\`
+```
 Browser → localhost:3000 → Client Container
 Browser → localhost:8000 → API Container → postgres-db:5432 → Database Container
-\`\`\`
+```
 
 ### Development vs Production Comparison
 **Development Environment (what you just built)**:
-\`\`\`
+```
 Client Container ←→ Docker Network ←→ API Container ←→ Database Container
-\`\`\`
+```
 
 **Production Environment (from Part 1)**:
-\`\`\`
+```
 S3 + CloudFront ←→ Internet ←→ EC2 (API Container) ←→ RDS Database
-\`\`\`
+```
 
 **Key Insight**: Your development environment now mirrors your production architecture! The same containerized API that runs on EC2 in production is running locally, just connected to different databases.
 
@@ -58,23 +52,23 @@ S3 + CloudFront ←→ Internet ←→ EC2 (API Container) ←→ RDS Database
 ## Common Issues and Solutions
 
 ### Container Won't Start
-\`\`\`bash
+```bash
 # Check container logs for error messages
 docker logs container-name
 
 # Check if ports are already in use
 docker ps
 netstat -an | grep :8000
-\`\`\`
+```
 
 ### Database Connection Problems
-\`\`\`bash
+```bash
 # Verify database container is running and accepting connections
 docker exec -it postgres-db psql -U rockadmin -d rockofages
 
 # Test network connectivity between containers
 docker exec -it api-container ping postgres-db
-\`\`\`
+```
 
 ### Client Can't Reach API
 - Verify API container is running: \`docker ps\`
@@ -164,7 +158,3 @@ You'll transform this manual container setup into a streamlined, professional de
 **5. Environment Variables**: Professional patterns for managing configuration across different environments
 
 In Part 3, you'll learn how Docker Compose simplifies managing this multi-container environment, making it even easier to work with and introducing professional development container workflows with VS Code.
-
-    `,
-  exercise: null,
-}

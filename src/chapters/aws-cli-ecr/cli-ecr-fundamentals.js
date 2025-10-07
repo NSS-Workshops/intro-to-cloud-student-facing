@@ -1,9 +1,4 @@
-export const awsCliEcrIntroChapter = {
-  id: "aws-cli-ecr-intro",
-  title: "Intro to AWS CLI and ECR",
-  sectionId: "aws-cli-ecr",
-  previousChapterId: null,
-  content: `## From Local to Cloud
+## From Local to Cloud
 
 Now that your application is containerized with Docker, the next step is learning how to interact with AWS — both to manage infrastructure and to push your Docker image to the cloud.
 
@@ -69,6 +64,4 @@ In the next chapter, we’ll:
 2. Create an ECR repository
 3. Tag and push your Docker image to ECR
 
-By the end, your Rock of Ages image will live in the cloud — ready for deployment.`,
-  exercise: null,
-};
+By the end, your Rock of Ages image will live in the cloud — ready for deployment.

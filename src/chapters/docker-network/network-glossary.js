@@ -1,9 +1,3 @@
-export const dockerNetworkGlossaryChapter = {
-  id: 'docker-network-glossary',
-  title: 'Glossary',
-  sectionId: 'docker-network',
-  previousChapterId: "workshop3-understanding-docker-network", 
-  content: `
 
 | Term | Description |
 |------|-------------|
@@ -14,6 +8,3 @@ export const dockerNetworkGlossaryChapter = {
 | **Dev Containers** | A standardized container-based development environment, defined with configuration files and supported by tools like VS Code. |
 | **docker network create** | A command used to create a named Docker network that can be shared among containers to allow communication. |
 | **Production Parity** | The practice of keeping local development environments as similar as possible to production, minimizing surprises during deployment. |
-
-`,
-};

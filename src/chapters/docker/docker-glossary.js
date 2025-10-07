@@ -1,9 +1,4 @@
-export const dockerGlossaryChapter = {
-  id: 'docker-glossary',
-  title: 'Glossary',
-  sectionId: 'intro-to-docker',
-  previousChapterId: 'dockerfile-breakdown',
-  content: `## Docker Glossary
+## Docker Glossary
 
   This glossary provides definitions for key terms introduced in the Docker modules.
 
@@ -32,8 +27,3 @@ export const dockerGlossaryChapter = {
 
 ### Full Beginner Course on Docker
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3c-iBn73dDE?si=3xT6M9OeeScAnr_v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-`,
-  exercise: null
-};

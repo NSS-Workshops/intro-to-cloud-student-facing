@@ -1,9 +1,4 @@
-export const ec2Chapter = {
-  id: "ec2-setup",
-  title: "Running Docker Container from ECR on EC2",
-  sectionId: "ec2",
-  previousChapterId: "ec2-fundamentals",
-  content: `## Running Your Docker Image on an EC2 Instance
+## Running Your Docker Image on an EC2 Instance
 
 In this chapter, you’ll launch an EC2 instance, attach an IAM role that allows ECR access, and pull and run your Docker container from ECR.
 
@@ -43,28 +38,28 @@ The instructors have already created a role \`Ec2AccessRole\` with the \`AmazonE
 You will see a terminal for your ec2 instance in the browser. In that terminal run the following commands:
 
 #### Update system packages
-\`\`\`bash
+```bash
 sudo yum update -y
-\`\`\`
+```
 
 #### Install Docker
-\`\`\`bash
+```bash
 sudo amazon-linux-extras install docker -y
-\`\`\`
+```
 
 #### Start Docker and add EC2 user to Docker group
-\`\`\`bash
+```bash
 sudo service docker start
 sudo usermod -a -G docker ec2-user
-\`\`\`
+```
 
 💡 **What's happening here?** This installs and starts Docker on your EC2 instance. Adding the EC2 user to the Docker group allows you to run Docker without using \`sudo\`.
 
 #### Apply group changes
 You may need to run:
-\`\`\`bash
+```bash
 newgrp docker
-\`\`\`
+```
 
 …or **reconnect** to the instance for Docker group permissions to take effect.
 
@@ -72,23 +67,23 @@ newgrp docker
 ### 4. Authenticate Docker with ECR and Pull Image
 
 #### Authenticate to ECR:
-\`\`\`bash
+```bash
 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin [your_account_id].dkr.ecr.us-east-2.amazonaws.com
-\`\`\`
+```
 
 Replace \`[your_account_id]\` with your actual AWS account ID.
 
 💡 **What's happening here?** This uses the IAM role attached to your EC2 instance to generate a temporary token that Docker uses to log in to your private ECR registry.
 
 #### Pull your Docker image:
-\`\`\`bash
+```bash
 docker pull [your_account_id].dkr.ecr.us-east-2.amazonaws.com/rock-of-ages-api:latest
-\`\`\`
+```
 
 If you get a permission error, try:
-\`\`\`bash
+```bash
 newgrp docker
-\`\`\`
+```
 …then re-run the pull command.
 
 💡 **What's happening here?** You're downloading the Docker image that you previously pushed to ECR so it can be run on this instance.
@@ -98,9 +93,9 @@ newgrp docker
 
 Start your container and map port 8000 to port 80 on the instance:
 
-\`\`\`bash
+```bash
 docker run -d --name rock-of-ages-api -p 80:8000 [your_account_id].dkr.ecr.us-east-2.amazonaws.com/rock-of-ages-api:latest
-\`\`\`
+```
 
 💡 **What's happening here?** This runs the container in detached mode and makes the app accessible via HTTP on port 80 (the default web port).
 
@@ -126,6 +121,4 @@ In this chapter, you've:
 - Pulled and ran your Docker container on EC2
 
 You’ve now deployed a containerized application on a live AWS server — powered by EC2 and ECR 🚀. 
-Now feel free to update your front end application to use the new URL. Update VITE_API_URL in the .env file in rock-of-ages-client. Then you can either follow the steps from the workshop 1 CICD chapter to automate the deployment or update your S3 files manually. Go to the cloudfront url to confirm the application is working with the new backend.`,
-  exercise: null,
-}
+Now feel free to update your front end application to use the new URL. Update VITE_API_URL in the .env file in rock-of-ages-client. Then you can either follow the steps from the workshop 1 CICD chapter to automate the deployment or update your S3 files manually. Go to the cloudfront url to confirm the application is working with the new backend.

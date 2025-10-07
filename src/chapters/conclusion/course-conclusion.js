@@ -1,12 +1,4 @@
-import diagram from "../../assets/workshopOverview.png";
-
-
-export const workshopSummaryChapter = {
-  id: "workshopSummary",
-  title: "Summary",
-  sectionId: "conclusion",
-  previousChapterId: null,
-  content: `## What You've Accomplished!
+## What You've Accomplished!
   
   In this workshop, you have gotten some hands on experience with using devops practices within a cloud ecosystem. We've deployed a full stack application using AWS services such as S3, Cloudfront, Ec2, ECR, and RDS. We've also employed devops and automation tools such as Docker, CI/CD pipelines, and github actions. 
   
@@ -61,7 +53,3 @@ export const workshopSummaryChapter = {
   * Can you ask each question one by one and evaluate my answers?
   
   Play around with different prompts to get more specific questions and answers about the services we have learned. 
-  
-`,
-  exercise: null,
-}

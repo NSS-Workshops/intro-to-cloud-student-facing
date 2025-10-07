@@ -1,9 +1,4 @@
-export const cliEcrGlossaryChapter = {
-  id: 'cli-ecr-glossary',
-  title: 'Glossary',
-  sectionId: 'aws-cli-ecr',
-  previousChapterId: "cli-ecr",
-  content: `## AWS CLI & ECR Glossary
+## AWS CLI & ECR Glossary
 
 This glossary provides definitions for key terms introduced in the AWS CLI and ECR module.
 
@@ -18,8 +13,3 @@ This glossary provides definitions for key terms introduced in the AWS CLI and E
 | **\`docker tag\`** | A Docker CLI command that applies a new tag (including the registry URL) to an existing image, preparing it to be pushed. |
 | **Region** | The geographic location where your ECR repository is created. CLI commands must match this region to succeed. |
 | **IAM (Identity and Access Management)** | AWS’s service for controlling user access to resources, including who can push to or pull from an ECR repository. |
-
-`
-,
-  exercise: null
-};

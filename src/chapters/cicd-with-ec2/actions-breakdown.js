@@ -1,15 +1,10 @@
-export const githubActionsBreakdownChapter = {
-  id: "ci-cd-artifact-breakdown",
-  title: "Understanding the Rock of Ages API GitHub Actions Workflow",
-  sectionId: 'cicd-ec2-docker',
-  previousChapterId: "ec2-action",
-  content: `## Dissecting the CI/CD Workflow
+## Dissecting the CI/CD Workflow
 
 Here’s the full GitHub Actions YAML workflow we’ll explore:
 
 Here’s the full GitHub Actions YAML file:
 
-\`\`\`yaml
+```yaml
 name: Build & Push Docker Image
 
 on:
@@ -67,29 +62,29 @@ jobs:
           IMAGE="\${{ vars.ECR_REGISTRY }}/\${{ vars.ECR_REPOSITORY }}:latest"
           docker build -t "$IMAGE" .
           docker push "$IMAGE"
-\`\`\`
+```
 
 Let’s break it down, job by job.
 
 
 ## 🚧 Triggering the Workflow
 
-\`\`\`yaml
+```yaml
 on:
   push:
     branches: [main]
-\`\`\`
+```
 
 This workflow is triggered every time a commit is pushed to the \`main\` branch.
 
 
 ## 🔐 Permissions
 
-\`\`\`yaml
+```yaml
 permissions:
   id-token: write
   contents: read
-\`\`\`
+```
 
 These permissions allow GitHub to authenticate with AWS via OIDC (OpenID Connect) and read repo contents.
 
@@ -129,7 +124,7 @@ Runs only if tests pass:
 
 This second workflow enables **on-demand deployment** to an EC2 instance using AWS SSM (Systems Manager):
 
-\`\`\`yaml
+```yaml
 name: Deploy to EC2
 
 on:
@@ -161,37 +156,37 @@ jobs:
           --comment "Manual deploy from GitHub Actions" \\
           --parameters '{"commands":["IMAGE=\\"\${{ vars.ECR_REGISTRY }}/\${{ vars.ECR_REPOSITORY }}:latest\\"","docker pull \\"$IMAGE\\"","docker stop rock-of-ages-api || true","docker rm rock-of-ages-api || true","docker run -d --name rock-of-ages-api -p 80:8000 \\"$IMAGE\\""]}' \\
           --region \${{ vars.AWS_REGION }}
-\`\`\`
+```
 
 ### 🧭 Let’s break this down:
 
 
 ## 🖲️ Trigger Type
 
-\`\`\`yaml
+```yaml
 on:
   workflow_dispatch:
-\`\`\`
+```
 
 This workflow only runs **manually** via the GitHub Actions UI. It’s perfect for **controlled deployments** — such as staging, production, or hotfixes.
 
 
 ## 🔐 AWS Access
 
-\`\`\`yaml
+```yaml
 permissions:
   id-token: write
   contents: read
-\`\`\`
+```
 
 This allows GitHub to assume an IAM role securely using OIDC — no AWS secrets stored in your repo.
 
 
 ## 📦 ECR Login
 
-\`\`\`yaml
+```yaml
 uses: aws-actions/amazon-ecr-login@v2
-\`\`\`
+```
 
 Logs in to Amazon ECR so the EC2 instance can pull your Docker image.
 
@@ -200,9 +195,9 @@ Logs in to Amazon ECR so the EC2 instance can pull your Docker image.
 
 This line:
 
-\`\`\`bash
+```bash
 aws ssm send-command ...
-\`\`\`
+```
 
 Uses AWS Systems Manager to run a shell script **remotely on your EC2 instance**. This avoids SSH and is safer, auditable, and works even if ports are blocked.
 
@@ -234,6 +229,3 @@ This makes your pipeline:
 - Easy to manage
 - Safe to scale
 - Compatible with modern AWS best practices
-`,
-  exercise: null,
-};

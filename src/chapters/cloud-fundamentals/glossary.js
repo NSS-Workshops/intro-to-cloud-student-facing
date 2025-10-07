@@ -1,9 +1,4 @@
-export const cloudFundamentalsGlossaryChapter = {
-  id: 'cloud-fundamentals-glossary',
-  title: 'Cloud Fundamentals Glossary',
-  sectionId: 'cloud-fundamentals',
-  previousChapterId: 'aws-account-setup',
-  content: `## Cloud Fundamentals Glossary
+## Cloud Fundamentals Glossary
 
 This glossary provides definitions for key terms introduced in the Cloud Fundamentals module.
 
@@ -27,7 +22,3 @@ This glossary provides definitions for key terms introduced in the Cloud Fundame
 | Availability Zone (AZ)    | An isolated location within a region that helps build resilient applications.               |
 | Edge Location             | Global endpoints for CloudFront caching, enabling faster content delivery.                 |
 | AWS Management Console    | Web-based user interface for managing AWS services and resources.                          |
-
-`,
-  exercise: null
-};

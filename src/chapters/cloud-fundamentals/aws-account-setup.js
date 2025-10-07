@@ -1,12 +1,3 @@
-import awsEml from "../../assets/aws_email.png";
-import accSelect from "../../assets/account_select.png";
-
-export const awsAccountSetupChapter = {
-  id: 'aws-account-setup',
-  title: 'AWS Account Setup',
-  sectionId: 'cloud-fundamentals',
-  previousChapterId: 'why-use-cloud',
-  content: `
 You should have an email titled:
 
 > **"Invitation to join AWS IAM Identity Center"**
@@ -130,6 +121,4 @@ In addition to regions and AZs, AWS has **Edge Locations** that are part of Amaz
 4. Use the Services dropdown to navigate to the S3 service
 
 In the next module, we'll dive deeper into AWS S3 and learn how to 
-host a static website.`,
-  exercise: null
-};
+host a static website.

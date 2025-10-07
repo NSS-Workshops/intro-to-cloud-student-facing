@@ -1,9 +1,4 @@
-export const cloudfrontFundamentalsChapter = {
-  id: "cloudfront-fundamentals",
-  title: "CloudFront Fundamentals",
-  sectionId: "cloudfront",
-  previousChapterId: null,
-  content: `## Welcome Back to the Cloud
+## Welcome Back to the Cloud
 
 In our last module, we took our first step into cloud development by deploying our Rock of Ages application to Amazon S3. You created a bucket, configured it for website hosting, and uploaded your React application files. By the end of that module, you had a working website accessible via your S3 bucket's website endpoint.
 
@@ -123,6 +118,3 @@ In the next chapter, we'll:
 4. Access your website through its new CloudFront URL
 
 By the end of these steps, your Rock of Ages application will be delivered through Amazon's global content delivery network - a significant improvement in performance, security, and professional deployment.
-`,
-  exercise: null,
-}

@@ -1,11 +1,4 @@
-import diagramImg from "../../assets/workshopOverview.png";
 
-export const introductionChapter = {
-  id: 'introduction',
-  title: 'Introduction to the course',
-  sectionId: 'introduction',
-  previousChapterId: 'pre-requisites',
-  content: `
 Welcome to the **Intro to Cloud** course! By the end of this workshop, you'll understand key cloud concepts, gain hands-on experience deploying a full stack application to the cloud, 
 and confidently discuss terms related to cloud and CICD practices. 
 
@@ -128,8 +121,3 @@ There will be Nine class sessions held on Zoom.
 - Final Assessment: one-on-one meeting with an instructor
     - Students will be required to show that they have set up the AWS services covered throughout the course. 
     - Students will answer a few "interview" questions to show that they can discuss what they've learned and use the vocabulary correctly. We are not expecting mastery just a basic understanding of the concepts. 
-
-
-`,
-  exercise: null
-};

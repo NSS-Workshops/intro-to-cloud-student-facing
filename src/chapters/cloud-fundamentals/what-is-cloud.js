@@ -1,9 +1,4 @@
-export const whatIsCloudChapter = {
-  id: 'what-is-cloud',
-  title: 'What is the Cloud?',
-  sectionId: 'cloud-fundamentals',
-  previousChapterId: null,
-  content: `## Definition and Key Characteristics
+## Definition and Key Characteristics
 
 Cloud computing is the delivery of computing services—including servers, storage, databases, networking, software, analytics, and intelligence—over the Internet ("the cloud") to offer faster innovation, flexible resources, and economies of scale.
 
@@ -84,6 +79,4 @@ The major providers:
 - Alibaba Cloud
 - DigitalOcean
 
-In this course, we'll be focusing primarily on AWS services, starting with the fundamentals and moving to practical implementations.`,
-  exercise: null
-};
+In this course, we'll be focusing primarily on AWS services, starting with the fundamentals and moving to practical implementations.

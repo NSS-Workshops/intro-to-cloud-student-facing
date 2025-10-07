@@ -1,9 +1,4 @@
-export const ec2FundamentalsChapter = {
-  id: "ec2-fundamentals",
-  title: "Amazon EC2 Fundamentals",
-  sectionId: "ec2",
-  previousChapterId: null,
-  content: `## EC2: Your Virtual Server in the Cloud
+## EC2: Your Virtual Server in the Cloud
 
 Up to now, you’ve worked in the cloud with high-level tools like Docker, ECR, and S3. These services are powerful — but they all need somewhere to run.
 
@@ -101,6 +96,4 @@ In the next chapter, you’ll:
 
 With EC2, your app moves from development to cloud-hosted — giving you real infrastructure to deploy, monitor, and scale.
 
-You’re about to step into full-stack cloud engineering — and it starts by launching your first instance.`,
-  exercise: null,
-};
+You’re about to step into full-stack cloud engineering — and it starts by launching your first instance.

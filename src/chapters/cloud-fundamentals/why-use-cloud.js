@@ -1,9 +1,4 @@
-export const whyUseCloudChapter = {
-  id: 'why-use-cloud',
-  title: 'Why Use the Cloud?',
-  sectionId: 'cloud-fundamentals',
-  previousChapterId: 'what-is-cloud',
-  content: `## Benefits of Cloud Computing
+## Benefits of Cloud Computing
 
 Cloud computing has transformed how businesses and developers approach IT infrastructure and application development. Here are the key benefits that make cloud computing an attractive option:
 <iframe width="560" height="315" src="https://www.youtube.com/embed/p1Nr03gtkyU?si=cora-8cg0_2kg0hB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -81,6 +76,4 @@ Cloud computing has transformed how businesses and developers approach IT infras
 - Improved security posture and reduced data center footprint
 - Accelerated development of new financial products
 
-In the next chapter, we'll get hands-on by setting up an AWS account, which will be our platform for exploring cloud services throughout this course.`,
-  exercise: null
-};
+In the next chapter, we'll get hands-on by setting up an AWS account, which will be our platform for exploring cloud services throughout this course.

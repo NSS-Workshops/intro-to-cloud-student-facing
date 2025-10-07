@@ -1,9 +1,4 @@
-export const workshop3RDSLearningChapter = {
-  id: "workshop3-rds-learning",
-  title: "What is RDS and Why Are We Using It?",
-  sectionId: "rds",
-  previousChapterId: null,
-  content: `
+
 ## What is Amazon RDS?
 
 **Amazon RDS (Relational Database Service)** is a fully managed service for running cloud-hosted databases like PostgreSQL, MySQL, and others. Instead of setting up and maintaining your own database server, RDS lets AWS handle the setup, backups, updates, and scaling for you.
@@ -73,7 +68,3 @@ This is how modern web apps are built — separating compute (EC2) from storage 
 - 📊 We use relational databases when our data is highly structured and consistent — and we want powerful querying tools like SQL.
 
 In the next chapter, we’ll walk through **provisioning your own PostgreSQL database on RDS** and connecting your API to it.
-
-`,
-  exercise: null,
-};

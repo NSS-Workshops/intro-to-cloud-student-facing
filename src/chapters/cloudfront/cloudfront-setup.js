@@ -1,12 +1,4 @@
-import diagram from "../../assets/cloudfront-s3-diagram.png"
-
-
-export const cloudfrontSetupChapter = {
-  id: "cloudfront-setup",
-  title: "CloudFront Setup",
-  sectionId: "cloudfront",
-  previousChapterId: "cloudfront-fundamentals",
-  content: `## Creating and Configuring a CloudFront Distribution
+## Creating and Configuring a CloudFront Distribution
 
 Now that we understand what CloudFront is and how it works, let's create our own CloudFront distribution to serve our Rock of Ages application faster and more securely to users around the world.
 
@@ -117,6 +109,4 @@ In this chapter, you've:
 - Gained access to HTTPS and professional-grade hosting features
 - Built a complete, scalable web hosting architecture using AWS services
 
-Your Rock of Ages application is now served through AWS's global content delivery network, making it faster and more secure for users worldwide. In the next module, we'll set up automated deployments using GitHub Actions so you can update your site without manually uploading files.`,
-  exercise: null,
-}
+Your Rock of Ages application is now served through AWS's global content delivery network, making it faster and more secure for users worldwide. In the next module, we'll set up automated deployments using GitHub Actions so you can update your site without manually uploading files.

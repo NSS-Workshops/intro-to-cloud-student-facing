@@ -1,9 +1,4 @@
-export const dockerFundamentalsChapter = {
-  id: "docker-fundamentals",
-  title: "Docker Fundamentals",
-  sectionId: "intro-to-docker",
-  previousChapterId: null,
-  content: `## Welcome to Containers
+## Welcome to Containers
 
 In our previous modules, you’ve worked with code, dependencies, and environments — and maybe noticed how setting up a development environment can feel fragile and inconsistent.
 
@@ -135,6 +130,4 @@ In the next chapter, we’ll:
 3. Run a container locally using the image
 4. Confirm the Rock of Ages API runs inside the container
 
-By the end of this section, your backend will be running in a fully self-contained Docker environment — a huge step toward scalable, production-ready deployment.`,
-  exercise: null,
-}
+By the end of this section, your backend will be running in a fully self-contained Docker environment — a huge step toward scalable, production-ready deployment.

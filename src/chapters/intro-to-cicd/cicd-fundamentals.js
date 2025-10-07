@@ -1,9 +1,4 @@
-export const cicdFundamentalsChapter = {
-  id: 'cicd-fundamentals',
-  title: 'CI/CD Fundamentals',
-  sectionId: 'intro-to-cicd',
-  previousChapterId: null,
-  content: `## What is Continuous Integration/Continuous Deployment?
+## What is Continuous Integration/Continuous Deployment?
 
 Continuous Integration and Continuous Deployment (CI/CD) are software development practices that enable teams to deliver code changes more frequently and reliably. These practices form the backbone of modern DevOps methodologies.
 
@@ -191,6 +186,4 @@ These platforms provide end-to-end solutions for building, testing, and deployin
    - Visual pipeline editor
    - Pay-per-use pricing model
 
-In the next chapter, we'll dive into GitHub Actions, a powerful CI/CD platform that we'll use to build our own deployment pipeline.`,
-  exercise: null
-};
+In the next chapter, we'll dive into GitHub Actions, a powerful CI/CD platform that we'll use to build our own deployment pipeline.

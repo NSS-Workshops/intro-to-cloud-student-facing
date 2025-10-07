@@ -1,9 +1,4 @@
-export const cicdGlossaryChapter = {
-  id: 'ec2-cicd-glossary',
-  title: 'Glossary',
-  sectionId: 'cicd-ec2-docker',
-  previousChapterId: 'ci-cd-artifact-breakdown',
-  content: `## Advanced CI/CD Glossary
+## Advanced CI/CD Glossary
 
 This glossary expands on key concepts introduced in the advanced CI/CD module, particularly around Docker-based workflows and AWS integrations.
 
@@ -27,6 +22,3 @@ This glossary expands on key concepts introduced in the advanced CI/CD module, p
 
 ### Expanding on CICD
 <iframe width="560" height="315" src="https://www.youtube.com/embed/AknbizcLq4w?si=qupUBBwHjGWjNRXe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-`,
-  exercise: null
-};
