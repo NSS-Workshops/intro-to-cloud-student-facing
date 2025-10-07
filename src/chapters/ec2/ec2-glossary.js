@@ -7,7 +7,7 @@
 | **EC2 (Elastic Compute Cloud)** | A core AWS service that provides resizable virtual servers (instances) in the cloud. |
 | **Instance** | A virtual machine running on AWS. You control its OS, configuration, and software. |
 | **AMI (Amazon Machine Image)** | A pre-configured image that defines the OS and base software for an instance. Common choices include Amazon Linux, Ubuntu, and Windows. |
-| **Instance Type** | Defines the hardware resources (CPU, memory, network performance) for an EC2 instance. Examples: \`t2.micro\`, \`t3.medium\`. |
+| **Instance Type** | Defines the hardware resources (CPU, memory, network performance) for an EC2 instance. Examples: `t2.micro`, `t3.medium`. |
 | **Key Pair** | A set of cryptographic keys used to securely access an instance via SSH. You download the private key when creating the pair. |
 | **SSH (Secure Shell)** | A protocol used to securely log in to remote machines. EC2 supports SSH login using your key pair. |
 | **Security Group** | A virtual firewall that controls inbound and outbound traffic to your EC2 instance. Rules define which ports and IPs are allowed. |

@@ -52,7 +52,7 @@ Each job does one thing: **test**, or **build/push**.
 #### ✅ 2. Conditional Execution = Safety
 
 - Jobs run in a **controlled order**  
-- \`build-and-push\` depends on \`test\`, so if tests fail, the Docker image won’t be built or published  
+- `build-and-push` depends on `test`, so if tests fail, the Docker image won’t be built or published  
 - Prevents broken code from reaching production
 
 
@@ -60,12 +60,12 @@ Each job does one thing: **test**, or **build/push**.
 
 - No AWS secrets in your repo  
 - Uses GitHub’s **OpenID Connect (OIDC)** to assume a role securely  
-- Scope credentials only to jobs that need them (like \`push\` or \`deploy\`)
+- Scope credentials only to jobs that need them (like `push` or `deploy`)
 
 
 #### ✅ 4. GitHub-native Workflow Design
 
-- Uses built-in features like \`needs\` and \`workflow_dispatch\` 
+- Uses built-in features like `needs` and `workflow_dispatch` 
 - Fully compatible with GitHub's ecosystem  
 - Encourages scalable, maintainable automation
 

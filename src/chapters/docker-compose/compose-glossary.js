@@ -3,7 +3,7 @@ This glossary provides definitions for key terms introduced in the Docker Compos
 
 | Term | Description |
 |------|-------------|
-| **Docker Compose** | A tool for defining and running multi-container Docker applications using a YAML file. Instead of managing containers individually with lengthy \`docker run\` commands, you describe your entire application stack in a single \`docker-compose.yml\` file. |
+| **Docker Compose** | A tool for defining and running multi-container Docker applications using a YAML file. Instead of managing containers individually with lengthy `docker run` commands, you describe your entire application stack in a single `docker-compose.yml` file. |
 | **Services** | In Docker Compose, services are the different components of your application (like database, API, client). Each service can be built from a Dockerfile or use a pre-built image from Docker Hub. |
 | **docker-compose.yml** | The configuration file that describes all your services, networks, and volumes. This is your "infrastructure as code" for development environments. |
 | **Volume Mounts** | A way to share files and directories between your host machine and containers. In Docker Compose, volume mounts enable live code synchronization without rebuilding images. |

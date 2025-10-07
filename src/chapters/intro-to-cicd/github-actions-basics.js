@@ -26,7 +26,7 @@ other tasks like issue triage, dependency updates, and more.
 
 ## Anatomy of a Workflow File
 
-GitHub Actions workflows are defined in YAML files stored in the \`.github/workflows\` directory of your repository. 
+GitHub Actions workflows are defined in YAML files stored in the `.github/workflows` directory of your repository. 
 Let's examine an example workflow file that would run whenever code is pushed to the repository.
 
 ### Basic Workflow Structure
@@ -221,16 +221,16 @@ GitHub Actions provides context objects that contain information about the workf
 
 #### Expression Syntax
 
-Expressions are enclosed in \`\${{ }}\` and can be used in most places in workflow files:
+Expressions are enclosed in `{{ }}` and can be used in most places in workflow files:
 
 ```yaml
 steps:
   - name: Conditional step
-    if: \${{ github.event_name == 'push' }}
+    if: {{ github.event_name == 'push' }}
     run: echo "This was a push event"
     
   - name: Dynamic value
-    run: echo "Repository is \${{ github.repository }}"
+    run: echo "Repository is {{ github.repository }}"
 ```
 
 ## Using Actions from the Marketplace
@@ -279,8 +279,8 @@ One of the most powerful features of GitHub Actions is the ability to use pre-bu
 ```yaml
 - uses: aws-actions/configure-aws-credentials@v1
   with:
-    aws-access-key-id: \${{ secrets.AWS_ACCESS_KEY_ID }}
-    aws-secret-access-key: \${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    aws-access-key-id: {{ secrets.AWS_ACCESS_KEY_ID }}
+    aws-secret-access-key: {{ secrets.AWS_SECRET_ACCESS_KEY }}
     aws-region: us-east-1
 ```
 
