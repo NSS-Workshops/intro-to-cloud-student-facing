@@ -18,7 +18,7 @@ You should have an email titled:
 <img width="700" src="${accSelect}" />
 
 - Click the triangle to reveal your available options,  
-then select the **\`intro_to_cloud\`** link
+then select the **`intro_to_cloud`** link
 
 At this point, you are now in your **student AWS account**.
 
@@ -32,10 +32,10 @@ At this point, you are now in your **student AWS account**.
 This is your **student AWS account** for the duration of the course.  
 It includes access to the following AWS services:
 
-- \`AmazonS3FullAccess\`
-- \`CloudFrontFullAccess\`
-- \`AmazonEC2FullAccess\`
-- \`AmazonRDSFullAccess\`
+- `AmazonS3FullAccess`
+- `CloudFrontFullAccess`
+- `AmazonEC2FullAccess`
+- `AmazonRDSFullAccess`
 
 > 🚨 **Please check in with your instructor before launching any resources outside of class.**  
 > 🧹 Don’t forget to **delete your resources** at the end of the course (your instructor will show you how!).  

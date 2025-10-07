@@ -17,7 +17,7 @@ This glossary provides definitions for key terms introduced in the CI/CD module.
 | **Secrets** | Encrypted environment variables that you create in a repository or organization to store sensitive information like API keys or passwords. |
 | **OIDC (OpenID Connect)** | A secure authentication protocol that allows identity providers (like GitHub) to authenticate users or systems directly. |
 | **Cache Invalidation** | The process of telling a CDN to remove cached versions of content so users see the latest files. |
-| **Env variable** | Short for "environment variable," env variables are key-value pairs used to pass configuration settings to programs and scripts. In workflows, the env: block defines these variables for jobs or steps. Environment variables allow dynamic, reusable configurations without hardcoding values in scripts or code. They can store information or configurable parameters, and are accessed using syntax like \${{ env.VARIABLE_NAME }} or $VARIABLE_NAME. Centralizing these values improves maintainability, readability, and security.|
+| **Env variable** | Short for "environment variable," env variables are key-value pairs used to pass configuration settings to programs and scripts. In workflows, the env: block defines these variables for jobs or steps. Environment variables allow dynamic, reusable configurations without hardcoding values in scripts or code. They can store information or configurable parameters, and are accessed using syntax like ${{ env.VARIABLE_NAME }} or $VARIABLE_NAME. Centralizing these values improves maintainability, readability, and security.|
 
 
 ## Further Learning Resources!

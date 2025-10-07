@@ -31,8 +31,8 @@ mv ~/path/to/your/rock-of-ages-client ./
 ```
 
 **Important**: Use your actual repository names! They might be:
-- \`rock-of-ages-api-yourname\`
-- \`yourname-rock-api\`
+- `rock-of-ages-api-yourname`
+- `yourname-rock-api`
 - etc.
 
 Your structure should now look like:
@@ -56,7 +56,7 @@ rock-of-ages-development/
 
 ### Step 3: Create docker-compose.yml
 
-In the \`rock-of-ages-development\` directory, create a file named \`docker-compose.yml\`:
+In the `rock-of-ages-development` directory, create a file named `docker-compose.yml`:
 
 ```yaml
 version: '3.8'
@@ -126,17 +126,17 @@ networks:
 ```
 
 **⚠️ IMPORTANT**: 
-1. Replace \`your-api-repo-name\` with your actual API repository folder name (4 places)
-2. Replace \`your-client-repo-name\` with your actual client repository folder name (4 places)
-3. Make sure the PostgreSQL environment values match what's in your existing \`.env.local\` file!
+1. Replace `your-api-repo-name` with your actual API repository folder name (4 places)
+2. Replace `your-client-repo-name` with your actual client repository folder name (4 places)
+3. Make sure the PostgreSQL environment values match what's in your existing `.env.local` file!
 
-**Notice the API command**: We're using the full Django startup command including database seeding. This means when you run \`docker compose up\`, you get a complete working application immediately!
+**Notice the API command**: We're using the full Django startup command including database seeding. This means when you run `docker compose up`, you get a complete working application immediately!
 
 ### Step 4: Verify Your Environment Files
 
-Before running Docker Compose, confirm that your \`.env.local\` files still exist from the previous section:
+Before running Docker Compose, confirm that your `.env.local` files still exist from the previous section:
 
-**Check your API's \`.env.local\` file:**
+**Check your API's `.env.local` file:**
 
 It should contain:
 ```
@@ -148,14 +148,14 @@ DB_PORT=5432
 SSLMODE=disable
 ```
 
-**Check your client's \`.env.local\` file:**
+**Check your client's `.env.local` file:**
 
 It should contain:
 ```
 VITE_API_URL=http://localhost:8000
 ```
 
-**Critical**: The database values in your \`.env.local\` MUST match what you put in the docker-compose.yml file!
+**Critical**: The database values in your `.env.local` MUST match what you put in the docker-compose.yml file!
 
 ## Understanding the Docker Compose File
 
@@ -170,30 +170,30 @@ Let's break down what each section does and compare it to the manual commands yo
 - Each service can be built from a Dockerfile or use a pre-built image
 
 **postgres-db service:**
-- \`image: postgres:15\` - Uses the official PostgreSQL image
-- **Previously**: You ran \`docker run -d --name postgres-db --network rock-of-ages-network -e POSTGRES_DB=rockofages -e POSTGRES_USER=rockadmin -e POSTGRES_PASSWORD=localpassword123 -p 5432:5432 postgres:15\`
+- `image: postgres:15` - Uses the official PostgreSQL image
+- **Previously**: You ran `docker run -d --name postgres-db --network rock-of-ages-network -e POSTGRES_DB=rockofages -e POSTGRES_USER=rockadmin -e POSTGRES_PASSWORD=localpassword123 -p 5432:5432 postgres:15`
 - **Now**: All those flags are organized clearly in the YAML file
-- \`healthcheck:\` - Ensures database is ready before starting dependent services (NEW feature!)
+- `healthcheck:` - Ensures database is ready before starting dependent services (NEW feature!)
 
 **api service:**
-- **Previously**: You ran \`docker build -t rock-of-ages-api .\` then \`docker run -d --name api-container --network rock-of-ages-network --env-file .env.local -p 8000:8000 rock-of-ages-api\`
+- **Previously**: You ran `docker build -t rock-of-ages-api .` then `docker run -d --name api-container --network rock-of-ages-network --env-file .env.local -p 8000:8000 rock-of-ages-api`
 - **Now**: Build and run configuration is declared in one place
-- \`volumes:\` - **Game changer!** Your local code is mounted into the container
-- \`depends_on:\` - Waits for database to be healthy before starting
-- \`command:\` - Automatically seeds the database and starts Django server
+- `volumes:` - **Game changer!** Your local code is mounted into the container
+- `depends_on:` - Waits for database to be healthy before starting
+- `command:` - Automatically seeds the database and starts Django server
 
 **client service:**
 - **Previously**: You built and ran with multiple commands
 - **Now**: Everything is defined declaratively
-- \`command:\` - This starts your React development server! When this runs, your app is live at localhost:3000
+- `command:` - This starts your React development server! When this runs, your app is live at localhost:3000
 
 **Key Improvements Over Manual Setup**
 
-1. **One Network**: No need to manually create with \`docker network create\`
-2. **Automatic Building**: No separate \`docker build\` commands
+1. **One Network**: No need to manually create with `docker network create`
+2. **Automatic Building**: No separate `docker build` commands
 3. **Health Checks**: Services wait for dependencies to be truly ready
 4. **Volume Mounts**: **Game changer!** Live code synchronization enables hot reload
-5. **Single Command**: Replace 10+ commands with just \`docker compose up\`
+5. **Single Command**: Replace 10+ commands with just `docker compose up`
 
 ### The Magic of Volume Mounts
 
@@ -215,7 +215,7 @@ volumes:
 
 ### Step 5: Start Everything with One Command
 
-Make sure you've verified your \`.env.local\` files exist (see Step 4), then:
+Make sure you've verified your `.env.local` files exist (see Step 4), then:
 
 ```bash
 # From the rock-of-ages-development directory
@@ -276,17 +276,17 @@ Run this query:
 SELECT COUNT(*) FROM rockapi_rock;
 ```
 
-You should see 3 rocks (from the seed data). Type \`\\q\` to exit.
+You should see 3 rocks (from the seed data). Type `\q` to exit.
 
 #### 2. Test The Complete Application Flow
-- **Open your browser** to \`http://localhost:3000\`
+- **Open your browser** to `http://localhost:3000`
 - **You should see** the Rock of Ages application
 - **Open Developer Tools** and go to the **Network** tab
 - **Try to register** a new user account
-- **In the Network tab**, confirm that API calls are going to \`localhost:8000\`
+- **In the Network tab**, confirm that API calls are going to `localhost:8000`
 - **Login** and try to view the rocks collection
 - **Test adding** a rock to your collection  
-- **Verify in Network tab** that all API requests show \`localhost:8000\` as the target
+- **Verify in Network tab** that all API requests show `localhost:8000` as the target
 
 **🎉 If all tests pass, your complete Docker Compose environment is working perfectly!**
 
@@ -296,12 +296,12 @@ You now have a **full-stack development environment** that starts with a single 
 
 Let's see Docker Compose hot reload in action:
 
-1. **Open any React component** in your client repository (e.g., a component in \`src/components/\`)
+1. **Open any React component** in your client repository (e.g., a component in `src/components/`)
 2. **Make a visible change** - add some text or change a heading in the JSX
 4. **Save the file**
-5. **Check your browser** at \`http://localhost:3000\` - **The change appears instantly!**
+5. **Check your browser** at `http://localhost:3000` - **The change appears instantly!**
 
-**Why this works**: Docker Compose volume mounts (\`./your-client-repo-name:/app\`) sync your file changes immediately to the container, and Vite's dev server detects and hot reloads automatically.
+**Why this works**: Docker Compose volume mounts (`./your-client-repo-name:/app`) sync your file changes immediately to the container, and Vite's dev server detects and hot reloads automatically.
 
 ### Step 7: Run in Background Mode (Optional)
 

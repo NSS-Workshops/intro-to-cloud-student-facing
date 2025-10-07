@@ -50,7 +50,7 @@ We need to tell VS Code how to connect to our API container. In your API reposit
 mkdir ./your-api-repo-name/.devcontainer
 ```
 
-Create \`./your-api-repo-name/.devcontainer/devcontainer.json\`:
+Create `./your-api-repo-name/.devcontainer/devcontainer.json`:
 
 ```json
 {
@@ -86,10 +86,10 @@ Create \`./your-api-repo-name/.devcontainer/devcontainer.json\`:
 ```
 
 **Key settings explained:**
-- \`"dockerComposeFile": "../../docker-compose.yml"\` - Points to your compose file
-- \`"service": "api"\` - Connects to the API container
-- \`"overrideCommand": true\` - **Critical!** This prevents the automatic Django startup from docker-compose.yml, allowing you to manually start the service and attach the debug process. 
-- \`"workspaceFolder": "/app"\` - Sets the working directory inside the container
+- `"dockerComposeFile": "../../docker-compose.yml"` - Points to your compose file
+- `"service": "api"` - Connects to the API container
+- `"overrideCommand": true` - **Critical!** This prevents the automatic Django startup from docker-compose.yml, allowing you to manually start the service and attach the debug process. 
+- `"workspaceFolder": "/app"` - Sets the working directory inside the container
 
 ### Step 3: Start the Debugging Environment
 
@@ -120,7 +120,7 @@ VS Code will:
 1. Connect to your running API container
 2. Install the VS Code server inside the container
 3. Install Python extensions
-4. Run \`pipenv install --dev\` to set up development dependencies
+4. Run `pipenv install --dev` to set up development dependencies
 5. Give you a terminal that's inside the container
 
 You'll see output like:
@@ -136,7 +136,7 @@ Done. Press any key to close the terminal.
 
 Now we need to configure VS Code to debug Django properly. Create a debug configuration in your API repository:
 
-**Create \`.vscode/launch.json\` in your API repo:**
+**Create `.vscode/launch.json` in your API repo:**
 
 ```json
 {
@@ -146,13 +146,13 @@ Now we need to configure VS Code to debug Django properly. Create a debug config
             "name": "Django: Debug Server",
             "type": "python",
             "request": "launch",
-            "program": "\${workspaceFolder}/manage.py",
+            "program": "${workspaceFolder}/manage.py",
             "args": ["runserver", "0.0.0.0:8000", "--noreload"],
             "django": true,
             "justMyCode": false,
             "console": "integratedTerminal",
             "env": {
-                "PYTHONPATH": "\${workspaceFolder}",
+                "PYTHONPATH": "${workspaceFolder}",
                 "DJANGO_SETTINGS_MODULE": "rockproject.settings"
             }
         }
@@ -161,10 +161,10 @@ Now we need to configure VS Code to debug Django properly. Create a debug config
 ```
 
 **What this configuration does:**
-- \`"program": "\${workspaceFolder}/manage.py"\` - Tells VS Code to run Django's manage.py
-- \`"args": ["runserver", "0.0.0.0:8000", "--noreload"]\` - Starts the development server
-- \`"--noreload"\` - Prevents Django from restarting (which can interfere with debugging)
-- \`"django": true\` - Enables Django-specific debugging features
+- `"program": "${workspaceFolder}/manage.py"` - Tells VS Code to run Django's manage.py
+- `"args": ["runserver", "0.0.0.0:8000", "--noreload"]` - Starts the development server
+- `"--noreload"` - Prevents Django from restarting (which can interfere with debugging)
+- `"django": true` - Enables Django-specific debugging features
 
 ### Step 5: Start Debugging Django
 
@@ -189,10 +189,10 @@ Here's the moment of truth! We'll start Django with the integrated debugger:
 
 Time for the magic moment:
 
-1. **Open \`rockapi/views/rock_view.py\`** in VS Code
-2. **Find the \`list\` method** (this handles GET requests to \`/rocks\`)
-3. **Place a breakpoint** next to the line \`rocks = Rock.objects.all()\` 
-4. **Open your browser** to \`http://localhost:3000\`
+1. **Open `rockapi/views/rock_view.py`** in VS Code
+2. **Find the `list` method** (this handles GET requests to `/rocks`)
+3. **Place a breakpoint** next to the line `rocks = Rock.objects.all()` 
+4. **Open your browser** to `http://localhost:3000`
 5. **Login** and **click "All Rocks"**
 6. **VS Code should immediately pause** at your breakpoint! 🎉
 
@@ -200,8 +200,8 @@ Time for the magic moment:
 
 With the execution paused at your breakpoint, you can:
 
-- **Inspect variables**: Hover over \`rocks\` to see its value
-- **Use the Debug Console**: Type \`print(rocks.count())\` to run Python expressions
+- **Inspect variables**: Hover over `rocks` to see its value
+- **Use the Debug Console**: Type `print(rocks.count())` to run Python expressions
 - **Step through code**: Use F10 to step over lines, F11 to step into functions
 - **View the call stack**: See exactly how your code was reached
 - **Add watch expressions**: Monitor variables as you step through code
@@ -223,8 +223,8 @@ Let's test how code changes work in the debugging environment and understand the
 Now let's see how API debugging handles changes differently:
 
 1. **Stop the debugger** (Ctrl+C or click the stop button in VS Code) 
-2. **Open** \`rockapi/views/rock_view.py\`
-3. **Add a print statement** in the \`list\` method:
+2. **Open** `rockapi/views/rock_view.py`
+3. **Add a print statement** in the `list` method:
    ```python
    def list(self, request):
        """Handle GET requests to get all rocks"""
@@ -239,7 +239,7 @@ Now let's see how API debugging handles changes differently:
 
 #### Why Manual Restart is Required for Debugging
 
-When debugging with \`--noreload\`, Django doesn't automatically restart when files change. This is **intentional**:
+When debugging with `--noreload`, Django doesn't automatically restart when files change. This is **intentional**:
 
 - **Benefit**: Stable debugging connections that don't disconnect when you edit files
 - **Trade-off**: You must manually restart (F5) to see code changes
@@ -255,7 +255,7 @@ Perfect for:
 - 🔍 **Integration testing** of the complete application
 - 📱 **Client-focused development** where you just need the API running
 
-**Command**: \`docker compose up\` → Everything starts automatically!
+**Command**: `docker compose up` → Everything starts automatically!
 
 ### **API Debugging Workflow**
 Perfect for:
@@ -264,22 +264,22 @@ Perfect for:
 - 🎯 **Precise development** with step-through debugging
 - 🛠️ **Advanced troubleshooting** of business logic
 
-**Commands**: \`docker compose up postgres-db client\` + VS Code Dev Container → Selective control!
+**Commands**: `docker compose up postgres-db client` + VS Code Dev Container → Selective control!
 
 ## The Evolution: From Manual Setup to Streamlined Workflows
 
 ### **Manual Docker Network Setup** (Previous Section):
 - ❌ **No hot reload** - Code changes require stop/remove/rebuild/restart cycle
 - ❌ **10+ commands** to see simple changes
-- ❌ **Terminal-only debugging** - Print statements and \`pdb\` commands only
-- ❌ **Static code** - No volume mounts mean code is copied once during \`docker build\`
+- ❌ **Terminal-only debugging** - Print statements and `pdb` commands only
+- ❌ **Static code** - No volume mounts mean code is copied once during `docker build`
 
-### **Docker Compose Full-Stack Workflow** (\`docker compose up\`):
+### **Docker Compose Full-Stack Workflow** (`docker compose up`):
 - ✅ **Perfect hot reload** - React changes appear instantly, Django restarts automatically
 - ✅ **Zero configuration** - just works for everyone on the team  
 - ✅ **Instant complete application** - perfect for demos and integration testing
 
-### **Docker Compose API Debugging Workflow** (\`docker compose up postgres-db client\` + Dev Container):
+### **Docker Compose API Debugging Workflow** (`docker compose up postgres-db client` + Dev Container):
 - ✅ **Full VS Code debugging** - breakpoints, variable inspection, step-through debugging
 - ✅ **Client hot reload still works** - React updates instantly while debugging API
 - ✅ **Precise control** - start and stop Django exactly when you need it
@@ -294,14 +294,14 @@ volumes:
   - ./your-client-repo-name:/app  # Live sync: Your edits → Container immediately
 ```
 
-**Manual Setup**: Code copied once during \`docker build\` → Static forever  
+**Manual Setup**: Code copied once during `docker build` → Static forever  
 **Docker Compose**: Live volume mounts → **Save file = Instant container update**
 
 ## Summary: Your Complete Development Environment
 
 Congratulations! You've just set up the same development workflow used by teams at major tech companies. You now have:
 
-**One Command to Rule Them All**: \`docker compose up\` starts your entire development infrastructure with perfect networking and dependency management.
+**One Command to Rule Them All**: `docker compose up` starts your entire development infrastructure with perfect networking and dependency management.
 
 **Integrated Debugging That Just Works**: Press F5 in VS Code for full debugging capabilities—breakpoints, variable inspection, step-through debugging—all running inside your containerized environment.
 

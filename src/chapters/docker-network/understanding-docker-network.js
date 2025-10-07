@@ -71,15 +71,15 @@ docker exec -it api-container ping postgres-db
 ```
 
 ### Client Can't Reach API
-- Verify API container is running: \`docker ps\`
-- Check API is responding: \`curl http://localhost:8000/rocks\`
-- Confirm client environment uses \`localhost:8000\` (not container name)
+- Verify API container is running: `docker ps`
+- Check API is responding: `curl http://localhost:8000/rocks`
+- Confirm client environment uses `localhost:8000` (not container name)
 - Ensure both containers are on the same network
 
 ### SSL/Database Errors
-- Verify \`.env.local\` has \`SSLMODE=disable\`
+- Verify `.env.local` has `SSLMODE=disable`
 - Check that Django settings include SSL options
-- Rebuild Docker image after changing settings: \`docker build -t rock-of-ages-api .\`
+- Rebuild Docker image after changing settings: `docker build -t rock-of-ages-api .`
 
 ---
 
@@ -106,10 +106,10 @@ While you've built a working development environment, this manual approach has s
 
 ### 2. Cumbersome Container Management
 **The Problem**: Managing multiple containers manually is tedious and error-prone:
-- You have to remember the exact \`docker run\` commands for each container
+- You have to remember the exact `docker run` commands for each container
 - Starting the full environment requires running multiple commands in the right order
 - If one container fails, you have to manually restart just that container
-- Stopping everything requires multiple \`docker stop\` commands
+- Stopping everything requires multiple `docker stop` commands
 - No easy way to see the status of your entire development stack at once
 
 **What you're missing**: Simple commands like "start everything" or "restart the API" without remembering complex Docker syntax.
@@ -119,7 +119,7 @@ While you've built a working development environment, this manual approach has s
 - To see Python code changes, you often need to rebuild the Docker image and restart the container
 - No hot reload for backend changes like you get with local development
 - File changes don't automatically trigger container updates
-- Logs from multiple containers are scattered across different \`docker logs\` commands
+- Logs from multiple containers are scattered across different `docker logs` commands
 
 **What you're missing**: The smooth development experience where you save a file and immediately see changes, just like local development but with all the benefits of containers.
 

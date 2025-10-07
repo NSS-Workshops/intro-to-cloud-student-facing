@@ -65,11 +65,11 @@ You can test your CloudFront distribution right away:
 
 1. On your distribution details page (where you're automatically taken after clicking "Create Distribution")
 2. Look on the left side under **Details**
-3. Find **Distribution domain name** - it will look like: \`dsjkhfsdjkfhdsk.cloudfront.net\`
+3. Find **Distribution domain name** - it will look like: `dsjkhfsdjkfhdsk.cloudfront.net`
 4. **Important**: When visiting your site, use HTTP instead of HTTPS:
-   - Copy the domain name (e.g., \`dsjkhfsdjkfhdsk.cloudfront.net\`)
-   - In your browser, navigate to: \`http://dsjkhfsdjkfhdsk.cloudfront.net\` (note the **http://** prefix)
-   - Do **not** use \`https://\` for now
+   - Copy the domain name (e.g., `dsjkhfsdjkfhdsk.cloudfront.net`)
+   - In your browser, navigate to: `http://dsjkhfsdjkfhdsk.cloudfront.net` (note the **http://** prefix)
+   - Do **not** use `https://` for now
 
 **Why use HTTP instead of HTTPS?** While CloudFront provides HTTPS support, our Rock of Ages application connects to an API that isn't configured for HTTPS. When you try to log in using the HTTPS version of your site, your browser's security protocols will block the network call to the HTTP API, preventing login from working. By accessing your site with HTTP, both your frontend and the API use the same protocol, allowing the login functionality to work properly.
 
@@ -85,7 +85,7 @@ Below is a detailed diagram showing how all the pieces of your architecture work
 
 **How Your Architecture Works:**
 
-1. **Users worldwide** access your application using the CloudFront URL (\`https://d1a2b3c4d5e6f7.cloudfront.net\`)
+1. **Users worldwide** access your application using the CloudFront URL (`https://d1a2b3c4d5e6f7.cloudfront.net`)
 
 2. **CloudFront** serves as a global front door to your application, with edge locations around the world for faster delivery
 

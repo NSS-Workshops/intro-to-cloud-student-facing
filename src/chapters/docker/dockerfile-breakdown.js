@@ -16,12 +16,12 @@ ENV PIPENV_VENV_IN_PROJECT=1
 WORKDIR /app
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \\
-  gcc \\
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  gcc \
   && rm -rf /var/lib/apt/lists/*
 
 # Install pipenv
-RUN pip install --upgrade pip && \\
+RUN pip install --upgrade pip && \
   pip install pipenv
 
 # Copy Pipfile and Pipfile.lock
@@ -67,9 +67,9 @@ ENV PIPENV_VENV_IN_PROJECT=1
 
 These environment variables do three useful things:
 
-- \`PYTHONDONTWRITEBYTECODE\`: Prevents creation of unnecessary \`.pyc\` files.
-- \`PYTHONUNBUFFERED\`: Ensures real-time logging output (great for debugging).
-- \`PIPENV_VENV_IN_PROJECT\`: Creates the virtual environment inside the project directory — easier to find and manage.
+- `PYTHONDONTWRITEBYTECODE`: Prevents creation of unnecessary `.pyc` files.
+- `PYTHONUNBUFFERED`: Ensures real-time logging output (great for debugging).
+- `PIPENV_VENV_IN_PROJECT`: Creates the virtual environment inside the project directory — easier to find and manage.
 
 ---
 
@@ -79,26 +79,26 @@ These environment variables do three useful things:
 WORKDIR /app
 ```
 
-Sets the working directory to \`/app\`. All subsequent commands (like \`COPY\` and \`RUN\`) will execute relative to this directory.
+Sets the working directory to `/app`. All subsequent commands (like `COPY` and `RUN`) will execute relative to this directory.
 
 ---
 
 ## 🧱 System Dependencies
 
 ```Dockerfile
-RUN apt-get update && apt-get install -y --no-install-recommends \\
-  gcc \\
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  gcc \
   && rm -rf /var/lib/apt/lists/*
 ```
 
-Installs the GNU Compiler Collection (\`gcc\`), which is required to build some Python packages (e.g. those that rely on C extensions like \`psycopg2\`). The cleanup step at the end keeps the image size small.
+Installs the GNU Compiler Collection (`gcc`), which is required to build some Python packages (e.g. those that rely on C extensions like `psycopg2`). The cleanup step at the end keeps the image size small.
 
 ---
 
 ## 📦 Python Dependency Manager
 
 ```Dockerfile
-RUN pip install --upgrade pip && \\
+RUN pip install --upgrade pip && \
   pip install pipenv
 ```
 
@@ -112,7 +112,7 @@ Upgrades pip and installs pipenv — the tool this project uses to manage Python
 COPY Pipfile* /app/
 ```
 
-Copies your \`Pipfile\` and \`Pipfile.lock\` to the container. Doing this before copying all source code helps Docker cache the dependencies layer efficiently.
+Copies your `Pipfile` and `Pipfile.lock` to the container. Doing this before copying all source code helps Docker cache the dependencies layer efficiently.
 
 ---
 
@@ -122,7 +122,7 @@ Copies your \`Pipfile\` and \`Pipfile.lock\` to the container. Doing this before
 RUN pipenv install
 ```
 
-Installs the project dependencies listed in the \`Pipfile\` into the virtual environment created by pipenv.
+Installs the project dependencies listed in the `Pipfile` into the virtual environment created by pipenv.
 
 ---
 
@@ -165,7 +165,7 @@ CMD pipenv run bash -c "./seed_database.sh && python manage.py runserver 0.0.0.0
 This is the main entrypoint for the container:
 1. Seeds the database
 2. Starts the Django development server
-3. Binds the server to \`0.0.0.0\` so it's accessible from outside the container
+3. Binds the server to `0.0.0.0` so it's accessible from outside the container
 
 ---
 

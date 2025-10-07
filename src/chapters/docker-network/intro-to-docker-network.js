@@ -86,4 +86,4 @@ Within a Docker network, containers reach each other using **container names as 
 DATABASE_HOST = "db-container"  # Uses container name, not localhost!
 ```
 
-**Important**: Your React app JavaScript runs in your browser, not in the container, so it still uses \`localhost\` to reach the API. Only server-to-server communication uses container names.
+**Important**: Your React app JavaScript runs in your browser, not in the container, so it still uses `localhost` to reach the API. Only server-to-server communication uses container names.

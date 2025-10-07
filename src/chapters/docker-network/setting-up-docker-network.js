@@ -34,18 +34,18 @@ docker run -d \
 ```
 
 **Understanding this command**:
-- \`-d\`: Run in background (detached mode)
-- \`--name postgres-db\`: Container name (other containers will use this to connect)
-- \`--network rock-of-ages-network\`: Connect to our custom network
-- \`-e\`: Set environment variables to configure PostgreSQL
-- \`-p 5432:5432\`: Map port 5432 to your host (for database tools like pgAdmin)
-- \`postgres:15\`: Use PostgreSQL version 15 image from Docker Hub
+- `-d`: Run in background (detached mode)
+- `--name postgres-db`: Container name (other containers will use this to connect)
+- `--network rock-of-ages-network`: Connect to our custom network
+- `-e`: Set environment variables to configure PostgreSQL
+- `-p 5432:5432`: Map port 5432 to your host (for database tools like pgAdmin)
+- `postgres:15`: Use PostgreSQL version 15 image from Docker Hub
 
 **About the environment variables**:
-These \`-e\` flags are **creating new database configuration**:
-- \`POSTGRES_DB=rockofages\`: **Creates** a database named "rockofages"
-- \`POSTGRES_USER=rockadmin\`: **Creates** a user named "rockadmin"
-- \`POSTGRES_PASSWORD=localpassword123\`: **Sets** the password for that user
+These `-e` flags are **creating new database configuration**:
+- `POSTGRES_DB=rockofages`: **Creates** a database named "rockofages"
+- `POSTGRES_USER=rockadmin`: **Creates** a user named "rockadmin"
+- `POSTGRES_PASSWORD=localpassword123`: **Sets** the password for that user
 
 **Can you customize these values?** Absolutely! You're defining the database configuration, not referencing something that already exists. Just make sure your API configuration (in the next step) uses the same values.
 
@@ -58,7 +58,7 @@ docker ps
 docker logs postgres-db
 ```
 
-**Expected output from \`docker logs postgres-db\`:**
+**Expected output from `docker logs postgres-db`:**
 ```
 The files belonging to this database system will be owned by user "postgres"...
 PostgreSQL init process complete; ready for start up.
@@ -104,10 +104,10 @@ DB_HOST=postgres-db           # Container name on Docker network
 DB_PASSWORD=localpassword123  # Simple local password
 ```
 
-**Same Code, Different Sources**: Your Django application uses \`os.environ.get('DB_HOST')\` in both cases - it receives environment variables whether they come from GitHub Secrets or Docker's \`--env-file\`. This is the cleanest, most professional approach.
+**Same Code, Different Sources**: Your Django application uses `os.environ.get('DB_HOST')` in both cases - it receives environment variables whether they come from GitHub Secrets or Docker's `--env-file`. This is the cleanest, most professional approach.
 
 ### Create Local Environment File
-Create \`.env.local\` in your API repository:
+Create `.env.local` in your API repository:
 
 ```bash
 DB_NAME=rockofages
@@ -119,8 +119,8 @@ SSLMODE=disable
 ```
 
 **Key Points**:
-- \`DB_HOST=postgres-db\`: This is how containers communicate within the network
-- \`SSLMODE=disable\`: Tells Django not to require SSL for the local database connection
+- `DB_HOST=postgres-db`: This is how containers communicate within the network
+- `SSLMODE=disable`: Tells Django not to require SSL for the local database connection
 
 ### Build and Run API Container
 ```bash
@@ -145,7 +145,7 @@ docker run -d \
 docker logs api-container
 ```
 
-**Expected output from \`docker logs api-container\`:**
+**Expected output from `docker logs api-container`:**
 ```
 🗄️  Setting up PostgreSQL database...
 ⚙️  Running Django migrations...
@@ -162,17 +162,17 @@ Quit the server with CONTROL-C.
 ```
 
 **✅ Success indicators to look for:**
-- \`🔗 Database connection: postgres-db:5432/rockofages\` (should show **postgres-db**, not an RDS endpoint)
+- `🔗 Database connection: postgres-db:5432/rockofages` (should show **postgres-db**, not an RDS endpoint)
 - "✅ Database setup complete!"
 - "Starting development server at http://0.0.0.0:8000/"
 - No error messages about SSL or authentication failures
 
-**🚨 Troubleshooting**: If you see an RDS endpoint (like \`rock-of-ages-db.xyz123.us-east-2.rds.amazonaws.com\`) in the database connection, your container is using the wrong environment variables. Make sure you:
-1. Added SSL options to your \`settings.py\` (from Part 1)
-2. Created the \`.env.local\` file with the correct values  
-3. Used \`--env-file .env.local\` in your docker run command
-4. The \`.env.local\` file has \`DB_HOST=postgres-db\` (not your RDS endpoint)
-5. Rebuilt your Docker image after any changes: \`docker build -t rock-of-ages-api .\`
+**🚨 Troubleshooting**: If you see an RDS endpoint (like `rock-of-ages-db.xyz123.us-east-2.rds.amazonaws.com`) in the database connection, your container is using the wrong environment variables. Make sure you:
+1. Added SSL options to your `settings.py` (from Part 1)
+2. Created the `.env.local` file with the correct values  
+3. Used `--env-file .env.local` in your docker run command
+4. The `.env.local` file has `DB_HOST=postgres-db` (not your RDS endpoint)
+5. Rebuilt your Docker image after any changes: `docker build -t rock-of-ages-api .`
 
 **🔥 Nuclear Option - Complete Environment Reset**: If you're still seeing RDS connections or other strange caching issues, completely wipe your Docker environment and rebuild everything:
 
@@ -217,7 +217,7 @@ This nuclear option removes all Docker containers, images, and networks, forcing
 Now you'll containerize your React client to complete the development environment.
 
 ### Create React Client Dockerfile
-In your React client repository, create a \`Dockerfile\`:
+In your React client repository, create a `Dockerfile`:
 
 ```dockerfile
 FROM node:18-alpine
@@ -241,19 +241,19 @@ CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "3000"]
 ```
 
 **Understanding this Dockerfile**:
-- \`node:18-alpine\`: Lightweight Node.js runtime (Alpine Linux is smaller)
-- \`--host 0.0.0.0\`: Allows connections from outside the container
-- \`--port 3000\`: Explicit port configuration for the Vite dev server
+- `node:18-alpine`: Lightweight Node.js runtime (Alpine Linux is smaller)
+- `--host 0.0.0.0`: Allows connections from outside the container
+- `--port 3000`: Explicit port configuration for the Vite dev server
 
 ### Create Local Environment for Client
-Create \`.env.local\` in your React client repository:
+Create `.env.local` in your React client repository:
 
 ```bash
 # API Configuration for Local Development
 VITE_API_URL=http://localhost:8000
 ```
 
-**Important**: The React client uses \`localhost:8000\` because the JavaScript code runs in your browser, not inside the Docker container. Your browser connects to Docker's port mapping.
+**Important**: The React client uses `localhost:8000` because the JavaScript code runs in your browser, not inside the Docker container. Your browser connects to Docker's port mapping.
 
 ### Build and Run Client Container
 ```bash
@@ -295,34 +295,34 @@ docker ps
 docker exec -it postgres-db psql -U rockadmin -d rockofages
 
 # First, check what tables exist
-\\dt
+\dt
 
 # Check if the rock table has data
 SELECT * FROM rockapi_rock;
 ```
 
 **Expected results**:
-- \`\\dt\` should show tables like \`rockapi_rock\`, \`rockapi_type\`, \`auth_user\`
-- \`SELECT * FROM rockapi_rock;\` should show 3 sample rocks
+- `\dt` should show tables like `rockapi_rock`, `rockapi_type`, `auth_user`
+- `SELECT * FROM rockapi_rock;` should show 3 sample rocks
 
-**⚠️ Important**: Don't forget the semicolon (\`;\`) at the end of SQL commands! If you forget it, PostgreSQL will wait for you to complete the statement and show a different prompt. If this happens, just type \`\\q\` to exit the database client and try again.
+**⚠️ Important**: Don't forget the semicolon (`;`) at the end of SQL commands! If you forget it, PostgreSQL will wait for you to complete the statement and show a different prompt. If this happens, just type `\q` to exit the database client and try again.
 
 ```bash
 # Exit the database client
-\\q
+\q
 ```
 
 **2. Test React Client**
-- Open your browser to \`http://localhost:3000\`
+- Open your browser to `http://localhost:3000`
 - You should see the Rock of Ages application
 - **Open Developer Tools** and go to the **Network** tab
 - Try to register a new user account
-- **In the Network tab**, confirm that API calls are going to \`localhost:8000\` (not your EC2 instance)
+- **In the Network tab**, confirm that API calls are going to `localhost:8000` (not your EC2 instance)
 - Login and try to view the rocks collection
 - Test adding a rock to your collection
-- **Verify in Network tab** that all API requests show \`localhost:8000\` as the target
+- **Verify in Network tab** that all API requests show `localhost:8000` as the target
 
-**Why this matters**: This confirms that your \`.env.local\` file is working correctly - your local React app is talking to your local API container, not your production EC2 instance. This is exactly what we want for safe local development!
+**Why this matters**: This confirms that your `.env.local` file is working correctly - your local React app is talking to your local API container, not your production EC2 instance. This is exactly what we want for safe local development!
 
 **3. Verify Container Network Communication**
 ```bash
