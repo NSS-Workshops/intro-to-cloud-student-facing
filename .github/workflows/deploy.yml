@@ -74,62 +74,63 @@ jobs:
   # 2) PR Preview (GitHub Pages alpha)
   # =========================
   pr-preview:
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages-pr-${{ github.event.pull_request.number }}
-      url: ${{ steps.pr_deploy.outputs.page_url }}
-
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+      pull-requests: write
+      packages: read
+    concurrency:
+      group: "pages-pr-${{ github.event.pull_request.number }}"
+      cancel-in-progress: true
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - run: |
-          echo "@nss-workshops:registry=https://npm.pkg.github.com" >> ~/.npmrc
-          echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/.npmrc
-          npm ci
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Setup Node
+      - uses: actions/checkout@v4
+
+      # Auth to GitHub Packages the *right* way (no double npm ci)
+      - name: Setup Node + auth for GitHub Packages
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@nss-workshops'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create env file
         run: |
           echo "VITE_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" > .env
           echo "VITE_OAUTH_CLIENT_SECRET=${{ secrets.OAUTH_CLIENT_SECRET }}" >> .env
           echo "VITE_PROXY_DOMAIN=https://authproxy.nss.team" >> .env
           echo "VITE_LEARNING_PLATFORM_API=https://learningapi.nss.team" >> .env
-      - name: Install dependencies
+
+      - name: Install deps
         run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build
         run: npm run build
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      # Publish preview using a marketplace action that handles routes + cleanup
+      - name: Deploy PR Preview to Pages
+        uses: rossjrw/pr-preview-action@v1
         with:
-          path: './dist'
+          source-dir: dist
+          umbrella-dir: pr-previews
+          preview-branch: gh-pages
+          deploy-repo: ${{ github.repository }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Deploy PR Preview (alpha)
-        id: pr_deploy
-        uses: actions/deploy-pages@v4
-        with:
-          preview: true
-
-      # ---------- Sticky PR comment with preview URL ----------
-      - name: Post preview link as sticky comment
+      - name: Sticky PR comment with URL
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: gh-pages-preview
           message: |
             🚀 **GitHub Pages Preview is ready**
-
-            **URL:** ${{ steps.pr_deploy.outputs.page_url }}
-
+            **URL:** https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr-previews/pr-${{ github.event.pull_request.number }}/
             _This comment updates automatically when you push new commits._
-
       # ---------- Slack notification ----------
       # - name: Notify Slack of PR Preview
       #   uses: 8398a7/action-slack@v3
@@ -140,3 +141,15 @@ jobs:
       #   env:
       #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       #   if: always()
+  
+  pr-preview-cleanup:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete preview folder
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          umbrella-dir: pr-previews
+          preview-branch: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
+          action: 'delete'
