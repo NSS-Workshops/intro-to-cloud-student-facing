@@ -43,7 +43,7 @@ jobs:
           echo "VITE_LEARNING_PLATFORM_API=https://learningapi.nss.team" >> .env
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build
         run: npm run build
@@ -100,7 +100,7 @@ jobs:
           echo "VITE_LEARNING_PLATFORM_API=https://learningapi.nss.team" >> .env
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build (PR)
         run: npm run build
