@@ -1,6 +1,9 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
-import copyChapterAssets from './copyChapterAssets';
+
+import { normalizePath } from 'vite'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
+import path from 'node:path'
 
 export default defineConfig(({ mode }) => {
   // Load env variables based on mode for server access
@@ -20,7 +23,16 @@ export default defineConfig(({ mode }) => {
           plugins: ['@emotion/babel-plugin']
         }
       }),
-      copyChapterAssets() // Add the custom plugin
+      viteStaticCopy({
+        targets: [
+          {
+            // copy all images from each chapter folder
+            src: normalizePath(path.resolve(__dirname, 'src/chapters/**/*.{png,jpg,jpeg,svg,gif,webp,avif}')),
+            dest: 'assets',
+            flatten: false
+          }
+        ]
+      })
     ],
     // Make env variables available to client-side code
     define: {
