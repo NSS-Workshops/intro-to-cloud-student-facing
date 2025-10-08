@@ -46,10 +46,10 @@ jobs:
         name: Configure npm for GitHub Packages
         run: |
           echo "@nss-workshops:registry=https://npm.pkg.github.com" > ~/.npmrc
-          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
           echo "always-auth=true" >> ~/.npmrc
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.PAT_READ_PACKAGES }}
       
       - name: Install dependencies
         run: npm ci
@@ -95,8 +95,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-        env:
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create env file
         run: |
           echo "VITE_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" > .env
