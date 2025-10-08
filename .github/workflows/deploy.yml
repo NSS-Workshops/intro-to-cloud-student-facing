@@ -38,7 +38,7 @@ jobs:
           registry-url: https://npm.pkg.github.com
           scope: '@nss-workshops'
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create env file
         run: |
           echo "VITE_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" > .env
@@ -93,7 +93,7 @@ jobs:
           registry-url: https://npm.pkg.github.com
           scope: '@nss-workshops'
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create env file
         run: |
           echo "VITE_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" > .env
