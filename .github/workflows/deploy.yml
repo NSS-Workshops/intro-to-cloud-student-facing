@@ -134,12 +134,12 @@ jobs:
             _This comment updates automatically when you push new commits._
 
       # ---------- Slack notification ----------
-      - name: Notify Slack of PR Preview
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-          text: "PR #${{ github.event.pull_request.number }} preview deployed: ${{ steps.pr_deploy.outputs.page_url }}"
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: always()
+      # - name: Notify Slack of PR Preview
+      #   uses: 8398a7/action-slack@v3
+      #   with:
+      #     status: ${{ job.status }}
+      #     fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+      #     text: "PR #${{ github.event.pull_request.number }} preview deployed: ${{ steps.pr_deploy.outputs.page_url }}"
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      #   if: always()
