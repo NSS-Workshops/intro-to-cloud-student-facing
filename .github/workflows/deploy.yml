@@ -35,6 +35,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          registry-url: https://npm.pkg.github.com
+          scope: '@nss-workshops'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create env file
         run: |
           echo "VITE_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" > .env
@@ -86,21 +90,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      # ---------- Configure GitHub Packages registry ----------
-      - name: Configure npm for GitHub Packages (@nss-workshops)
-        run: |
-          echo "@nss-workshops:registry=https://npm.pkg.github.com" > .npmrc
-          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
-          npm config set always-auth=true
-
-          echo "npm registry:"
-          npm config get registry
-          echo "scoped registry for @nss-workshops:"
-          npm config get @nss-workshops:registry
+          registry-url: https://npm.pkg.github.com
+          scope: '@nss-workshops'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Create env file
         run: |
           echo "VITE_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" > .env
