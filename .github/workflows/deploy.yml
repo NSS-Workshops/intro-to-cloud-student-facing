@@ -37,15 +37,22 @@ jobs:
           node-version: '20'
           registry-url: https://npm.pkg.github.com
           scope: '@nss-workshops'
-        env:
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create env file
         run: |
           echo "VITE_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" > .env
           echo "VITE_OAUTH_CLIENT_SECRET=${{ secrets.OAUTH_CLIENT_SECRET }}" >> .env
           echo "VITE_PROXY_DOMAIN=https://authproxy.nss.team" >> .env
           echo "VITE_LEARNING_PLATFORM_API=https://learningapi.nss.team" >> .env
-
+      
+      - &configure-npm
+        name: Configure npm for GitHub Packages
+        run: |
+          echo "@nss-workshops:registry=https://npm.pkg.github.com" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc
+          echo "always-auth=true" >> ~/.npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
       - name: Install dependencies
         run: npm ci
 
@@ -100,6 +107,8 @@ jobs:
           echo "VITE_OAUTH_CLIENT_SECRET=${{ secrets.OAUTH_CLIENT_SECRET }}" >> .env
           echo "VITE_PROXY_DOMAIN=https://authproxy.nss.team" >> .env
           echo "VITE_LEARNING_PLATFORM_API=https://learningapi.nss.team" >> .env
+      
+      - *configure-npm
 
       - name: Install dependencies
         run: npm ci
