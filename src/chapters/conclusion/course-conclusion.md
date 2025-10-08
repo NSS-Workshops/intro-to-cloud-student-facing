@@ -3,7 +3,7 @@
   In this workshop, you have gotten some hands on experience with using devops practices within a cloud ecosystem. We've deployed a full stack application using AWS services such as S3, Cloudfront, Ec2, ECR, and RDS. We've also employed devops and automation tools such as Docker, CI/CD pipelines, and github actions. 
   
   ### Here's another look at what you've built!
-  <img width=700 src="${diagram}"/>
+  <img width=700 src="./assets/arch_diagram.png"/>
   
   ### What You Should Know
   

@@ -69,17 +69,6 @@ import dockerComposeGlossaryContent from "./docker-compose/compose-glossary.md?r
 import courseConclusionContent from "./conclusion/course-conclusion.md?raw";
 
 
-/**
- * Helper function to fix asset paths in markdown content
- * Replaces relative paths with correct paths for embedded content
- * @param {string} content - The markdown content
- * @returns {string} Content with corrected asset paths
- */
-const fixAssetPaths = (content) => {
-  return content.replace(/src="\.\.\/\.\.\/\.\.\/public\/assets\//g, 'src="./assets/');
-};
-
-
 // Main chapters array
 export const chapters = [
   // Introduction chapters
@@ -88,7 +77,7 @@ export const chapters = [
     title: 'Introduction to the course',
     sectionId: 'introduction',
     previousChapterId: 'pre-requisites',
-    content: fixAssetPaths(introToCourseContent),
+    content: introToCourseContent,
     exercise: null
   },
   {
@@ -96,7 +85,7 @@ export const chapters = [
     title: 'Pre-Requisites',
     sectionId: 'introduction',
     previousChapterId: null,
-    content: fixAssetPaths(preRequisitesContent),
+    content: preRequisitesContent,
     exercise: null
   },
   // Cloud fundamentals chapters
@@ -105,7 +94,7 @@ export const chapters = [
     title: 'What is the Cloud?',
     sectionId: 'cloud-fundamentals',
     previousChapterId: null,
-    content: fixAssetPaths(whatIsCloudContent),
+    content: whatIsCloudContent,
     exercise: null
   },
   {
@@ -113,7 +102,7 @@ export const chapters = [
     title: 'Why Use the Cloud?',
     sectionId: 'cloud-fundamentals',
     previousChapterId: 'what-is-cloud',
-    content: fixAssetPaths(whyUseCloudContent),
+    content: whyUseCloudContent,
     exercise: null
   },
   {
@@ -121,7 +110,7 @@ export const chapters = [
     title: 'AWS Account Setup',
     sectionId: 'cloud-fundamentals',
     previousChapterId: 'why-use-cloud',
-    content: fixAssetPaths(awsAccountSetupContent),
+    content: awsAccountSetupContent,
     exercise: null
   },
   {
@@ -129,7 +118,7 @@ export const chapters = [
     title: 'Cloud Fundamentals Glossary',
     sectionId: 'cloud-fundamentals',
     previousChapterId: 'aws-account-setup',
-    content: fixAssetPaths(cloudFundamentalsGlossaryContent),
+    content: cloudFundamentalsGlossaryContent,
     exercise: null
   },
   // AWS S3 hosting chapters
@@ -138,7 +127,7 @@ export const chapters = [
     title: 'Setting up the Client',
     sectionId: 'aws-s3-hosting',
     previousChapterId: null,
-    content: fixAssetPaths(clientRepoSetupContent),
+    content: clientRepoSetupContent,
     exercise: null
   },
   {
@@ -146,7 +135,7 @@ export const chapters = [
     title: 'S3 Fundamentals',
     sectionId: 'aws-s3-hosting',
     previousChapterId: 'client-repo-setup',
-    content: fixAssetPaths(s3FundamentalsContent),
+    content: s3FundamentalsContent,
     exercise: null
   },
   {
@@ -154,7 +143,7 @@ export const chapters = [
     title: 'Setting up the S3 Bucket',
     sectionId: 'aws-s3-hosting',
     previousChapterId: 's3-fundamentals',
-    content: fixAssetPaths(s3BucketSetupContent),
+    content: s3BucketSetupContent,
     exercise: null
   },
   {
@@ -162,7 +151,7 @@ export const chapters = [
     title: 'S3 Glossary',
     sectionId: 'aws-s3-hosting',
     previousChapterId: 's3-bucket-setup',
-    content: fixAssetPaths(s3HostingGlossaryContent),
+    content: s3HostingGlossaryContent,
     exercise: null
   },
   // CloudFront chapters
@@ -171,7 +160,7 @@ export const chapters = [
     title: 'CloudFront Fundamentals',
     sectionId: 'cloudfront',
     previousChapterId: null,
-    content: fixAssetPaths(cloudfrontFundamentalsContent),
+    content: cloudfrontFundamentalsContent,
     exercise: null
   },
   {
@@ -179,7 +168,7 @@ export const chapters = [
     title: 'CloudFront Setup',
     sectionId: 'cloudfront',
     previousChapterId: 'cloudfront-fundamentals',
-    content: fixAssetPaths(cloudfrontSetupContent),
+    content: cloudfrontSetupContent,
     exercise: null
   },
   {
@@ -187,7 +176,7 @@ export const chapters = [
     title: 'CloudFront Glossary',
     sectionId: 'cloudfront',
     previousChapterId: 'cloudfront-setup',
-    content: fixAssetPaths(cloudfrontGlossaryContent),
+    content: cloudfrontGlossaryContent,
     exercise: null
   },
   // Intro to CI/CD chapters
@@ -196,7 +185,7 @@ export const chapters = [
     title: 'CI/CD Fundamentals',
     sectionId: 'intro-to-cicd',
     previousChapterId: null,
-    content: fixAssetPaths(cicdFundamentalsContent),
+    content: cicdFundamentalsContent,
     exercise: null
   },
   {
@@ -204,7 +193,7 @@ export const chapters = [
     title: 'GitHub Actions Basics',
     sectionId: 'intro-to-cicd',
     previousChapterId: 'cicd-fundamentals',
-    content: fixAssetPaths(githubActionsBasicsContent),
+    content: githubActionsBasicsContent,
     exercise: null
   },
   {
@@ -212,7 +201,7 @@ export const chapters = [
     title: 'Automating CI/CD for Rock of Ages Frontend with GitHub Actions',
     sectionId: 'intro-to-cicd',
     previousChapterId: 'github-actions-basics',
-    content: fixAssetPaths(deploymentPipelineContent),
+    content: deploymentPipelineContent,
     exercise: null
   },
   {
@@ -220,7 +209,7 @@ export const chapters = [
     title: 'CI/CD Glossary',
     sectionId: 'intro-to-cicd',
     previousChapterId: 'deployment-pipeline',
-    content: fixAssetPaths(cicdGlossaryContent),
+    content: cicdGlossaryContent,
     exercise: null
   },
   // Docker chapters
@@ -229,7 +218,7 @@ export const chapters = [
     title: 'Run a Docker Container Locally',
     sectionId: 'intro-to-docker',
     previousChapterId: 'docker-fundamentals',
-    content: fixAssetPaths(dockerSetupContent),
+    content: dockerSetupContent,
     exercise: null
   },
   {
@@ -237,7 +226,7 @@ export const chapters = [
     title: 'Glossary',
     sectionId: 'intro-to-docker',
     previousChapterId: 'dockerfile-breakdown',
-    content: fixAssetPaths(dockerGlossaryContent),
+    content: dockerGlossaryContent,
     exercise: null
   },
   {
@@ -245,7 +234,7 @@ export const chapters = [
     title: 'Docker Fundamentals',
     sectionId: 'intro-to-docker',
     previousChapterId: null,
-    content: fixAssetPaths(dockerFundamentalsContent),
+    content: dockerFundamentalsContent,
     exercise: null
   },
   {
@@ -253,7 +242,7 @@ export const chapters = [
     title: 'Understanding the Rock of Ages Dockerfile',
     sectionId: 'intro-to-docker',
     previousChapterId: 'docker-setup',
-    content: fixAssetPaths(dockerfileBreakdownContent),
+    content: dockerfileBreakdownContent,
     exercise: null
   },
   // AWS CLI ECR chapters
@@ -262,7 +251,7 @@ export const chapters = [
     title: 'Intro to AWS CLI and ECR',
     sectionId: 'aws-cli-ecr',
     previousChapterId: null,
-    content: fixAssetPaths(cliEcrFundamentalsContent),
+    content: cliEcrFundamentalsContent,
     exercise: null
   },
   {
@@ -270,7 +259,7 @@ export const chapters = [
     title: 'Glossary',
     sectionId: 'aws-cli-ecr',
     previousChapterId: 'cli-ecr',
-    content: fixAssetPaths(ecrGlossaryContent),
+    content: ecrGlossaryContent,
     exercise: null
   },
   {
@@ -278,7 +267,7 @@ export const chapters = [
     title: 'Pushing Docker Image to AWS ECR',
     sectionId: 'aws-cli-ecr',
     previousChapterId: 'aws-cli-ecr-intro',
-    content: fixAssetPaths(pushToEcrContent),
+    content: pushToEcrContent,
     exercise: null
   },
   // EC2 chapters
@@ -287,7 +276,7 @@ export const chapters = [
     title: 'Amazon EC2 Fundamentals',
     sectionId: 'ec2',
     previousChapterId: null,
-    content: fixAssetPaths(ec2FundamentalsContent),
+    content: ec2FundamentalsContent,
     exercise: null
   },
   {
@@ -295,7 +284,7 @@ export const chapters = [
     title: 'Running Docker Container from ECR on EC2',
     sectionId: 'ec2',
     previousChapterId: 'ec2-fundamentals',
-    content: fixAssetPaths(ec2SetupContent),
+    content: ec2SetupContent,
     exercise: null
   },
   {
@@ -303,7 +292,7 @@ export const chapters = [
     title: 'Glossary',
     sectionId: 'ec2',
     previousChapterId: 'ec2-setup',
-    content: fixAssetPaths(ec2GlossaryContent),
+    content: ec2GlossaryContent,
     exercise: null
   },
   // CI/CD with EC2 chapters
@@ -312,7 +301,7 @@ export const chapters = [
     title: 'Advancing CICD Concepts',
     sectionId: 'cicd-ec2-docker',
     previousChapterId: null,
-    content: fixAssetPaths(cicdEc2FundamentalsContent),
+    content: cicdEc2FundamentalsContent,
     exercise: null
   },
   {
@@ -320,7 +309,7 @@ export const chapters = [
     title: 'Github Actions Setup for Rock Of Ages API',
     sectionId: 'cicd-ec2-docker',
     previousChapterId: 'advanced-cicd-docker',
-    content: fixAssetPaths(actionsSetupContent),
+    content: actionsSetupContent,
     exercise: null
   },
   {
@@ -328,7 +317,7 @@ export const chapters = [
     title: 'Understanding the Rock of Ages API GitHub Actions Workflow',
     sectionId: 'cicd-ec2-docker',
     previousChapterId: 'ec2-action',
-    content: fixAssetPaths(actionsBreakdownContent),
+    content: actionsBreakdownContent,
     exercise: null
   },
   {
@@ -336,7 +325,7 @@ export const chapters = [
     title: 'Glossary',
     sectionId: 'cicd-ec2-docker',
     previousChapterId: 'ci-cd-artifact-breakdown',
-    content: fixAssetPaths(cicdEc2GlossaryContent),
+    content: cicdEc2GlossaryContent,
     exercise: null
   },
   // RDS chapters
@@ -345,7 +334,7 @@ export const chapters = [
     title: 'What is RDS and Why Are We Using It?',
     sectionId: 'rds',
     previousChapterId: null,
-    content: fixAssetPaths(rdsInfoContent),
+    content: rdsInfoContent,
     exercise: null
   },
   {
@@ -353,7 +342,7 @@ export const chapters = [
     title: 'RDS Setup',
     sectionId: 'rds',
     previousChapterId: 'workshop3-rds-learning',
-    content: fixAssetPaths(rdsSetupContent),
+    content: rdsSetupContent,
     exercise: null
   },
   {
@@ -361,7 +350,7 @@ export const chapters = [
     title: 'RDS Deployment To EC2',
     sectionId: 'rds',
     previousChapterId: 'workshop3-rds-setup',
-    content: fixAssetPaths(deployRdsContent),
+    content: deployRdsContent,
     exercise: null
   },
   {
@@ -369,7 +358,7 @@ export const chapters = [
     title: 'Glossary',
     sectionId: 'rds',
     previousChapterId: 'workshop3-rds-deploy',
-    content: fixAssetPaths(rdsGlossaryContent),
+    content: rdsGlossaryContent,
     exercise: null
   },
   // Conclusion chapters
@@ -378,7 +367,7 @@ export const chapters = [
     title: 'Summary',
     sectionId: 'conclusion',
     previousChapterId: null,
-    content: fixAssetPaths(courseConclusionContent),
+    content: courseConclusionContent,
     exercise: null
   },
   // Docker Network chapters
@@ -387,7 +376,7 @@ export const chapters = [
     title: 'Intro to Local Development with Docker',
     sectionId: 'docker-network',
     previousChapterId: null,
-    content: fixAssetPaths(introToDockerNetworkContent),
+    content: introToDockerNetworkContent,
     exercise: null
   },
   {
@@ -395,7 +384,7 @@ export const chapters = [
     title: 'Setting Up the Docker Network',
     sectionId: 'docker-network',
     previousChapterId: 'workshop3-intro-to-docker-network',
-    content: fixAssetPaths(settingUpDockerNetworkContent),
+    content: settingUpDockerNetworkContent,
     exercise: null
   },
   {
@@ -403,7 +392,7 @@ export const chapters = [
     title: 'Understanding the Docker Network',
     sectionId: 'docker-network',
     previousChapterId: 'workshop3-setting-up-docker-network',
-    content: fixAssetPaths(understandingDockerNetworkContent),
+    content: understandingDockerNetworkContent,
     exercise: null
   },
   {
@@ -411,7 +400,7 @@ export const chapters = [
     title: 'Glossary',
     sectionId: 'docker-network',
     previousChapterId: 'workshop3-understanding-docker-network',
-    content: fixAssetPaths(dockerNetworkGlossaryContent),
+    content: dockerNetworkGlossaryContent,
     exercise: null
   },
   // Docker Compose chapters
@@ -420,7 +409,7 @@ export const chapters = [
     title: 'Intro to Docker Compose',
     sectionId: 'docker-compose',
     previousChapterId: null,
-    content: fixAssetPaths(introToDockerComposeContent),
+    content: introToDockerComposeContent,
     exercise: null
   },
   {
@@ -428,7 +417,7 @@ export const chapters = [
     title: 'Setting up Docker Compose',
     sectionId: 'docker-compose',
     previousChapterId: 'workshop3-intro-to-docker-compose',
-    content: fixAssetPaths(dockerComposeSetupContent),
+    content: dockerComposeSetupContent,
     exercise: null
   },
   {
@@ -436,7 +425,7 @@ export const chapters = [
     title: 'Setting up Dev Containers',
     sectionId: 'docker-compose',
     previousChapterId: 'workshop3-docker-compose-setup',
-    content: fixAssetPaths(devContainersSetupContent),
+    content: devContainersSetupContent,
     exercise: null
   },
   {
@@ -444,7 +433,7 @@ export const chapters = [
     title: 'Glossary',
     sectionId: 'docker-compose',
     previousChapterId: 'workshop3-dev-containers-setup',
-    content: fixAssetPaths(dockerComposeGlossaryContent),
+    content: dockerComposeGlossaryContent,
     exercise: null
   },
 ]

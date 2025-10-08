@@ -2,7 +2,7 @@ You should have an email titled:
 
 > **"Invitation to join AWS IAM Identity Center"**
 
-<img width=700 src="${awsEml}"/>
+<img width=700 src="./assets/aws_email.png"/>
 
 - 🕒 **This invitation is valid for 7 days** — be sure to activate it promptly.
 - 📧 **Your username** is listed in that email.
@@ -15,7 +15,7 @@ You should have an email titled:
 
 - Follow the email instructions to provision your account and set a strong password.  
 - Once you're logged in, you'll see a screen like this:
-<img width="700" src="${accSelect}" />
+<img width="700" src="./assets/account_select.png" />
 
 - Click the triangle to reveal your available options,  
 then select the **`intro_to_cloud`** link
