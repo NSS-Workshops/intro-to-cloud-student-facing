@@ -35,8 +35,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          registry-url: https://npm.pkg.github.com
-          scope: '@nss-workshops'
       - name: Create env file
         run: |
           echo "VITE_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" > .env
@@ -97,8 +95,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          registry-url: https://npm.pkg.github.com
-          scope: '@nss-workshops'
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create env file
