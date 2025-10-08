@@ -81,7 +81,7 @@ Congratulations! Your site is now being served through CloudFront's global conte
 
 Below is a detailed diagram showing how all the pieces of your architecture work together:
 
-<img width=900 src="${diagram}"/>
+<img width=900 src="./assets/cloudfront-s3-diagram.png"/>
 
 **How Your Architecture Works:**
 

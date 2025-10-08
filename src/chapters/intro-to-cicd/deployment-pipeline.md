@@ -48,7 +48,7 @@ By storing variables as secrets, we ensure:
 | `CLOUDFRONT_DISTRIBUTION_ID` | Your CloudFront distribution ID     |
 
 ## Visual: How our GitHub Action Flow works
-<img width=1400 src="${ghAction}"/>
+<img width=1400 src="./assets/gh_action.jpg"/>
 
 ## Types of Tests for Rock of Ages App
 
