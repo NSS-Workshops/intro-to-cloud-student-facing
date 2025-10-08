@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: ["main"]
+  pull_request:
+    types: [opened, reopened, synchronize]
   workflow_dispatch:
 
 permissions:
@@ -11,11 +13,15 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: "pages-${{ github.ref }}"
   cancel-in-progress: true
 
 jobs:
+  # =========================
+  # 1) Production deploy (main)
+  # =========================
   deploy:
+    if: github.event_name == 'push'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -35,7 +41,6 @@ jobs:
           echo "VITE_OAUTH_CLIENT_SECRET=${{ secrets.OAUTH_CLIENT_SECRET }}" >> .env
           echo "VITE_PROXY_DOMAIN=https://authproxy.nss.team" >> .env
           echo "VITE_LEARNING_PLATFORM_API=https://learningapi.nss.team" >> .env
-
 
       - name: Install dependencies
         run: npm ci
@@ -64,3 +69,76 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()
+  # =========================
+  # 2) PR Preview (GitHub Pages alpha)
+  # =========================
+  pr-preview:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+      pull-requests: write   # needed for PR comments
+    environment:
+      name: github-pages-pr-${{ github.event.pull_request.number }}
+      url: ${{ steps.pr_deploy.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Create env file
+        run: |
+          echo "VITE_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" > .env
+          echo "VITE_OAUTH_CLIENT_SECRET=${{ secrets.OAUTH_CLIENT_SECRET }}" >> .env
+          echo "VITE_PROXY_DOMAIN=https://authproxy.nss.team" >> .env
+          echo "VITE_LEARNING_PLATFORM_API=https://learningapi.nss.team" >> .env
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (PR)
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact (PR)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+      - name: Deploy PR Preview (alpha)
+        id: pr_deploy
+        uses: actions/deploy-pages@v4
+        with:
+          preview: true
+
+      # Sticky PR comment with the preview URL
+      - name: Post preview link as sticky comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: gh-pages-preview
+          message: |
+            🚀 **GitHub Pages Preview is ready**
+
+            **URL:** ${{ steps.pr_deploy.outputs.page_url }}
+
+            _This comment updates automatically on new commits._
+
+      # Slack notify for preview
+      - name: Notify Slack of PR Preview
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+          text: "PR #${{ github.event.pull_request.number }} preview deployed: ${{ steps.pr_deploy.outputs.page_url }}"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
+
