@@ -81,7 +81,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - run: |
-          echo "@your-scope:registry=https://npm.pkg.github.com" >> ~/.npmrc
+          echo "@nss-workshops:registry=https://npm.pkg.github.com" >> ~/.npmrc
           echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/.npmrc
           npm ci
         env:
