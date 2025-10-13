@@ -21,8 +21,8 @@ In this guide, you'll learn how to configure your AWS CLI using temporary creden
     \`\`\`
 
 Follow the prompts to set up your sso profile. You will need the values listed here:
-  - You can name the session anything eg \`workshop2-session\`
-  - If promted for Sso registration scopes just press enter
+  - You can name the session anything eg \`ecr-session\`
+  - If prompted for Sso registration scopes just press enter
   - The start url will be \`https://nss-se.awsapps.com/start/\` (This will redirect you to aws login in the browser. Login and and click allow access)
   - Choose the \`intro_to_cloud\` role. 
   - Set the region to \`us-east-2\`.
