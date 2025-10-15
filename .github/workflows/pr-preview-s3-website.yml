@@ -6,8 +6,14 @@ on:
 
 permissions:
   contents: read
+  pages: write
   id-token: write
+  packages: read
+  actions: read     # <-- needed to read workflow runs/jobs
+  checks: read      # <-- needed to read check runs
+  statuses: read    # <-- needed to read commit statuses
   pull-requests: write
+  issues: write
 
 env:
   NODE_VERSION: '20'
