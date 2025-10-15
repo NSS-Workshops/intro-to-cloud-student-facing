@@ -7,27 +7,31 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
   console.log('OAuth env variables loaded:', {
-    clientId: env.VITE_OAUTH_CLIENT_ID ? 'Present' : 'Missing',
-    proxyDomain: env.VITE_PROXY_DOMAIN ? 'Present' : 'Missing',
     lmsDomain: env.VITE_LEARNING_PLATFORM_API ? 'Present' : 'Missing',
   });
 
-  // Make sure we have the required environment variables
-  if (!env.VITE_OAUTH_CLIENT_ID || !env.VITE_PROXY_DOMAIN) {
-    console.warn('WARNING: Missing environment variables. OAuth authentication may not work properly.');
-    console.warn('Make sure you have VITE_OAUTH_CLIENT_ID and VITE_PROXY_DOMAIN in your .env.local file');
-  }
+  let baseUrl = env.BASE_URL ? env.BASE_URL : 'intro-to-cloud-student-facing';
+  console.log("baseUrl: ",baseUrl);
+
+   // Custom plugin to replace placeholders in HTML
+  const htmlReplacementPlugin = {
+    name: 'html-replacement',
+    transformIndexHtml(html) {
+      return html
+        .replace(/%BASE_URL%/g, baseUrl);
+    }
+  };
 
   return {
-    base: '/intro-to-cloud-student-facing/',
+    base: `/${baseUrl}/`,
     plugins: [
       react({
         jsxImportSource: '@emotion/react',
         babel: {
           plugins: ['@emotion/babel-plugin']
         }
-      })
-      // GitHub OAuth plugin has been removed
+      }),
+      htmlReplacementPlugin
     ],
     // Make env variables available to client-side code
     define: {

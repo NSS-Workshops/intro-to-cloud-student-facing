@@ -15,7 +15,7 @@
           sessionStorage.removeItem('redirect');
 
           // Ensure we're in the correct basename
-          var basePath = '/intro-to-cloud-student-facing';
+          var basePath = '/%BASE_URL%';
           if (window.location.pathname.indexOf(basePath) === 0) {
             // Use history API to navigate to the correct route without a page reload
             var targetPath = basePath + redirect;
@@ -27,6 +27,15 @@
         }
       })();
     </script>
+    <style>
+       #root {
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
