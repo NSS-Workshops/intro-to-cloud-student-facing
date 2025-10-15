@@ -13,6 +13,15 @@ export default defineConfig(({ mode }) => {
   let baseUrl = env.BASE_URL ? env.BASE_URL : 'intro-to-cloud-student-facing';
   console.log("baseUrl: ",baseUrl);
 
+   // Custom plugin to replace placeholders in HTML
+  const htmlReplacementPlugin = {
+    name: 'html-replacement',
+    transformIndexHtml(html) {
+      return html
+        .replace(/%BASE_URL%/g, baseUrl);
+    }
+  };
+
   return {
     base: `/${baseUrl}/`,
     plugins: [
@@ -21,8 +30,8 @@ export default defineConfig(({ mode }) => {
         babel: {
           plugins: ['@emotion/babel-plugin']
         }
-      })
-      // GitHub OAuth plugin has been removed
+      }),
+      htmlReplacementPlugin
     ],
     // Make env variables available to client-side code
     define: {
