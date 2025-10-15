@@ -33,14 +33,13 @@ jobs:
           scope: '@nss-workshops'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VITE_BASE_URL: pr-${{ github.event.pull_request.number }}
       - name: Create env file
         run: |
           echo "VITE_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" > .env
           echo "VITE_OAUTH_CLIENT_SECRET=${{ secrets.OAUTH_CLIENT_SECRET }}" >> .env
           echo "VITE_PROXY_DOMAIN=https://authproxy.nss.team" >> .env
           echo "VITE_LEARNING_PLATFORM_API=https://learningapi.nss.team" >> .env
-
+          echo "VITE_BASE_URL=pr-${{ github.event.pull_request.number }}" >> .env
       - name: Install dependencies
         run: npm ci
         env:
