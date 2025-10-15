@@ -33,7 +33,7 @@ jobs:
           scope: '@nss-workshops'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+          VITE_BASE_URL: pr-${{ github.event.pull_request.number }}
       - name: Create env file
         run: |
           echo "VITE_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" > .env

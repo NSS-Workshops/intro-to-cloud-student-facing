@@ -10,8 +10,11 @@ export default defineConfig(({ mode }) => {
     lmsDomain: env.VITE_LEARNING_PLATFORM_API ? 'Present' : 'Missing',
   });
 
+  let baseUrl = env.BASE_URL ? env.BASE_URL : 'intro-to-cloud-student-facing';
+  console.log("baseUrl: ",baseUrl);
+
   return {
-    base: '/intro-to-cloud-student-facing/',
+    base: `/${baseUrl}/`,
     plugins: [
       react({
         jsxImportSource: '@emotion/react',
