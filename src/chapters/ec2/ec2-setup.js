@@ -12,8 +12,8 @@ In this chapter, you’ll launch an EC2 instance, attach an IAM role that allows
 
 1. From the **EC2 dashboard** in the aws console, click **Launch Instance**
 2. Give your instance a tag (e.g., \`Name: rock-of-ages-instance\`)
-3. Choose the **Amazon Linux**
-4. In the Amazon Machine Image(AMI) dropdown select Amazon Linux 2023 kernel-6.1 AMI
+3. Choose **Amazon Linux**
+4. In the Amazon Machine Image(AMI) dropdown select **Amazon Linux 2023 kernel-6.1 AMI**
 5. Select **t2.micro** as the instance type (free tier eligible)
 6. Under Key pair select the dropdown and clidk **proceed without a key pair** (for demo/testing purposes)
 7. Under **Network settings**, select **Allow SSH traffic from** and **Allow HTTP traffic from the internet** 
