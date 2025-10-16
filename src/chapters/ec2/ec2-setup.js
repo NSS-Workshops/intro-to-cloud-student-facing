@@ -15,7 +15,7 @@ In this chapter, you’ll launch an EC2 instance, attach an IAM role that allows
 3. Choose **Amazon Linux**
 4. In the Amazon Machine Image(AMI) dropdown select **Amazon Linux 2023 kernel-6.1 AMI**
 5. Select **t2.micro** as the instance type (free tier eligible)
-6. Under Key pair select the dropdown and clidk **proceed without a key pair** (for demo/testing purposes)
+6. Under Key pair select the dropdown and click **proceed without a key pair** (for demo/testing purposes)
 7. Under **Network settings**, select **Allow SSH traffic from** and **Allow HTTP traffic from the internet** 
 8. Leave the remaining settings at default and click **Launch Instance**
 
