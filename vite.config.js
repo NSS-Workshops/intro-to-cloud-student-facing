@@ -57,7 +57,7 @@ export default defineConfig(({ mode }) => {
   };
 
   // Check if any image files exist before adding the static copy plugin
-  const imagePattern = path.resolve(__dirname, 'src/sections/**/*.{png,jpg,jpeg,svg,gif,webp,avif}');
+  const imagePattern = path.resolve(__dirname, 'src/chapters/**/*.{png,jpg,jpeg,svg,gif,webp,avif}');
   const imageFiles = glob.sync(normalizePath(imagePattern));
   const hasImages = imageFiles.length > 0;
 
