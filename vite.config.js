@@ -1,52 +1,105 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
+import fs from 'fs'
+import path from 'path'
+import { normalizePath } from 'vite'
+import { dirname } from 'path'
+import { glob } from 'glob'
+import { fileURLToPath } from 'url'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 export default defineConfig(({ mode }) => {
   // Load env variables based on mode for server access
   // Using empty string as prefix to load all env vars, including those without VITE_ prefix
   const env = loadEnv(mode, process.cwd(), '');
 
+  // Read config.js to get courseName and doAuth
+  let courseName = 'Introduction to the Cloud'; // fallback
+  
+  let baseUrl = env.BASE_URL ? env.BASE_URL : 'intro-to-cloud-student-facing';
+  console.log("baseUrl: ",baseUrl);
+
+  let doAuth = false; // fallback
+  try {
+    const configPath = path.resolve(process.cwd(), 'src/config.js');
+    const configContent = fs.readFileSync(configPath, 'utf-8');
+
+    const courseNameMatch = configContent.match(/courseName:\s*["']([^"']+)["']/);
+    if (courseNameMatch) {
+      courseName = courseNameMatch[1];
+      // Transform courseName to URL-friendly format
+
+    }
+
+    const doAuthMatch = configContent.match(/doAuth:\s*(true|false)/);
+    if (doAuthMatch) {
+      doAuth = doAuthMatch[1] === 'true';
+    }
+  } catch (error) {
+    console.warn('Could not read config.js, using fallback values');
+  }
+
   console.log('OAuth env variables loaded:', {
-    clientId: env.VITE_OAUTH_CLIENT_ID ? 'Present' : 'Missing',
-    proxyDomain: env.VITE_PROXY_DOMAIN ? 'Present' : 'Missing',
     lmsDomain: env.VITE_LEARNING_PLATFORM_API ? 'Present' : 'Missing',
   });
 
-  // Make sure we have the required environment variables
-  if (!env.VITE_OAUTH_CLIENT_ID || !env.VITE_PROXY_DOMAIN) {
-    console.warn('WARNING: Missing environment variables. OAuth authentication may not work properly.');
-    console.warn('Make sure you have VITE_OAUTH_CLIENT_ID and VITE_PROXY_DOMAIN in your .env.local file');
+    // Custom plugin to replace placeholders in HTML
+  const htmlReplacementPlugin = {
+    name: 'html-replacement',
+    transformIndexHtml(html) {
+      return html
+        .replace(/%COURSE_NAME%/g, courseName)
+        .replace(/%COURSE_URL%/g, baseUrl);
+    }
+  };
+
+  // Check if any image files exist before adding the static copy plugin
+  const imagePattern = path.resolve(__dirname, 'src/chapters/**/*.{png,jpg,jpeg,svg,gif,webp,avif}');
+  const imageFiles = glob.sync(normalizePath(imagePattern));
+  const hasImages = imageFiles.length > 0;
+
+  const plugins = [
+    react({
+      jsxImportSource: '@emotion/react',
+      babel: {
+        plugins: ['@emotion/babel-plugin'],
+        exclude: [/node_modules/, /dist/, /deps/],   // don’t transpile built files
+        compact: true
+      }
+    }),
+    htmlReplacementPlugin
+  ];
+    
+
+    // Only add static copy plugin if images exist
+  if (hasImages) {
+    plugins.push(
+      viteStaticCopy({
+        targets: [
+          {
+            // copy all images from each chapter folder
+            src: normalizePath(imagePattern),
+            dest: 'assets',
+            flatten: false
+          }
+        ]
+      })
+    );
   }
 
   return {
-    base: '/intro-to-cloud-student-facing/',
-    plugins: [
-      react({
-        jsxImportSource: '@emotion/react',
-        babel: {
-          plugins: ['@emotion/babel-plugin']
-        }
-      })
-      // GitHub OAuth plugin has been removed
-    ],
+    base: `/${baseUrl}/`,
+    plugins,
     // Make env variables available to client-side code
-    define: {
-      'process.env.VITE_OAUTH_CLIENT_ID': JSON.stringify(env.VITE_OAUTH_CLIENT_ID),
-      'process.env.VITE_PROXY_DOMAIN': JSON.stringify(env.VITE_PROXY_DOMAIN),
-      'process.env.VITE_LEARNING_PLATFORM_API': JSON.stringify(env.VITE_LEARNING_PLATFORM_API),
-    },
-    // Environment Variables:
-    // Vite automatically loads env files in the following order:
-    // 1. .env                # loaded in all cases
-    // 2. .env.local         # loaded in all cases, ignored by git
-    // 3. .env.[mode]        # only loaded in specified mode
-    // 4. .env.[mode].local  # only loaded in specified mode, ignored by git
-    //
-    // Only variables prefixed with VITE_ are exposed to your code
-    // via import.meta.env.VITE_*
-    //
-    // Example:
-    // VITE_OAUTH_CLIENT_ID in .env.local becomes available as
-    // import.meta.env.VITE_OAUTH_CLIENT_ID in your code
+    ...(doAuth && {
+      define: {
+        'process.env.VITE_OAUTH_CLIENT_ID': JSON.stringify(env.VITE_OAUTH_CLIENT_ID),
+        'process.env.VITE_PROXY_DOMAIN': JSON.stringify(env.VITE_PROXY_DOMAIN),
+        'process.env.VITE_LEARNING_PLATFORM_API': JSON.stringify(env.VITE_LEARNING_PLATFORM_API),
+      },
+    }),
   }
 })
