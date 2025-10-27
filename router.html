@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Router Redirect – Loading SPA via S3 Static Hosting</title>
+    <script type="text/javascript">
+      (function(){
+        var baseUrl = 'http://workshop-site-previews.s3-website.us-east-2.amazonaws.com';
+        var l = window.location;
+        var pathname = l.pathname.replace(/^\/+/, ''); // remove leading slash
+        var segments = pathname.split('/');
+        if (segments.length < 2) {
+            return; // nothing to redirect if only “folder” (or root) present
+        }
+        var folder = segments[0];                                // e.g. “pr-72”
+        var innerPath = segments.slice(1).join('/');            // e.g. “s3-fundamentals”
+        if (innerPath) {
+            var route = '/' + innerPath + (l.search ? l.search : '') + (l.hash ? l.hash : '');
+            sessionStorage.setItem('redirect', route);            // use “redirect” key
+            window.location.href = baseUrl + '/' + folder + '/'; // redirect to folder root
+        }
+    })();
+    </script>
+  </head>
+  <body>
+      It looks like you landed on the root of the PR preview site. Are you looking for a specific preview link? Please go back to the PR and select the direct site preview you’d like to view.
+  </body>
+</html>
