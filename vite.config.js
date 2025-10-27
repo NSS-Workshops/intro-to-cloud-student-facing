@@ -1,7 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import fs from 'fs'
-import path from 'path'
+import path from 'node:path'
 import { normalizePath } from 'vite'
 import { dirname } from 'path'
 import { glob } from 'glob'
@@ -10,6 +10,7 @@ import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
+
 
 export default defineConfig(({ mode }) => {
   // Load env variables based on mode for server access
