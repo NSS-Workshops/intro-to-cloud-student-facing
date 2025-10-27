@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="./favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NSS Cloud Course</title>
+    <title>%COURSE_NAME%</title>
     <!-- Handle SPA routing for GitHub Pages -->
     <script type="text/javascript">
       // Check if we have a redirect route stored from 404.html
@@ -15,7 +15,7 @@
           sessionStorage.removeItem('redirect');
 
           // Ensure we're in the correct basename
-          var basePath = '/intro-to-cloud-student-facing';
+          var basePath = '/%COURSE_URL%';
           if (window.location.pathname.indexOf(basePath) === 0) {
             // Use history API to navigate to the correct route without a page reload
             var targetPath = basePath + redirect;
