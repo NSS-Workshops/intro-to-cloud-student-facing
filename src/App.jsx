@@ -2,7 +2,7 @@ import { chapters } from './chapters'
 import { nav } from './chapters/nav'
 import config from './config';
 
-import Course from './Course'
+import {Course} from '@nss-workshops/nss-core'
 
 function App() {
   return (
