@@ -154,10 +154,10 @@ jobs:
               "docker pull \"$IMAGE\"",
               "docker stop rock-of-ages-api || true",
               "docker rm rock-of-ages-api || true",
-              "docker run --pull always -d --name rock-of-ages-api -p 80:8000 \"$IMAGE\""
-              ]' \          
-          --region ${{ secrets.AWS_REGION }}
-```
+              "docker run --pull always -d --name rock-of-ages-api -p 80:8000 \\"$IMAGE\\""
+              ]' \\    
+          --region \${{ secrets.AWS_REGION }}
+\`\`\`
 
 #### What’s happening here?
 

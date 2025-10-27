@@ -6,12 +6,13 @@ In this chapter, you’ll launch an EC2 instance, attach an IAM role that allows
 ### 1. Set Up an EC2 Instance
 
 1. From the **EC2 dashboard** in the aws console, click **Launch Instance**
-2. Give your instance a tag (e.g., `Name: rock-of-ages-instance`)
-3. Choose the **Amazon Linux 2 AMI**
-4. Select **t2.micro** as the instance type (free tier eligible)
-5. Under Key pair select the dropdown and clidk **proceed without a key pair** (for demo/testing purposes)
-6. Under **Network settings**, select **Allow SSH traffic from** and **Allow HTTP traffic from the internet** 
-7. Leave the remaining settings at default and click **Launch Instance**
+2. Give your instance a tag (e.g., \`Name: rock-of-ages-instance\`)
+3. Choose **Amazon Linux**
+4. In the Amazon Machine Image(AMI) dropdown select **Amazon Linux 2023 kernel-6.1 AMI**
+5. Select **t2.micro** as the instance type (free tier eligible)
+6. Under Key pair select the dropdown and click **proceed without a key pair** (for demo/testing purposes)
+7. Under **Network settings**, select **Allow SSH traffic from** and **Allow HTTP traffic from the internet** 
+8. Leave the remaining settings at default and click **Launch Instance**
 
 💡 **What's happening here?** You're creating a virtual server (EC2) to host your Docker container. Amazon Linux 2 is a lightweight OS with Docker support, and t2.micro is a cost-effective choice for development. Adding a security group rule for port 80 allows your app to receive web traffic from the internet.
 
@@ -43,9 +44,9 @@ sudo yum update -y
 ```
 
 #### Install Docker
-```bash
-sudo amazon-linux-extras install docker -y
-```
+\`\`\`bash
+sudo dnf install docker -y
+\`\`\`
 
 #### Start Docker and add EC2 user to Docker group
 ```bash
@@ -56,8 +57,7 @@ sudo usermod -a -G docker ec2-user
 💡 **What's happening here?** This installs and starts Docker on your EC2 instance. Adding the EC2 user to the Docker group allows you to run Docker without using `sudo`.
 
 #### Apply group changes
-You may need to run:
-```bash
+\`\`\`bash
 newgrp docker
 ```
 
@@ -80,8 +80,8 @@ Replace `[your_account_id]` with your actual AWS account ID.
 docker pull [your_account_id].dkr.ecr.us-east-2.amazonaws.com/rock-of-ages-api:latest
 ```
 
-If you get a permission error, try:
-```bash
+If you get a permission error, make sure that you have run:
+\`\`\`bash
 newgrp docker
 ```
 …then re-run the pull command.

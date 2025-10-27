@@ -20,9 +20,10 @@ Fill out the database creation form with these settings:
 - Select **Single-AZ DB instance deployment**
 
 **Settings:**
-- **DB instance identifier**: `rock-of-ages-db`
-- **Master username**: `rockadmin`
-- **Master password**: Choose and save a secure password
+- **DB instance identifier**: \`rock-of-ages-db\`
+- **Master username**: \`rockadmin\`
+- **Credentials management**: Select Self managed
+- **Master password**: Choose and save a secure password (remember this password)
 - **Confirm password**: Re-enter your password
 
 **DB Instance Configuration:**
@@ -36,7 +37,6 @@ Fill out the database creation form with these settings:
 
 **Connectivity:**
 - **Don't connect to an EC2 compute resource**
-- **Network Type**: IPv4
 - **VPC**: default
 - **Subnet group**: default
 - **Public access**: Yes (for course use)
@@ -45,7 +45,7 @@ Fill out the database creation form with these settings:
 - **Availability Zone**: no preference (make sure you are already in Ohio at the top of the console)
 - **Port**: 5432
 
-**Authentication:**
+**Database Authentication:**
 - Password authentication
 
 **Monitoring:**
