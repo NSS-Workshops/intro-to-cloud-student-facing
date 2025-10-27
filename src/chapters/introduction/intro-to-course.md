@@ -37,7 +37,7 @@ We also offer some additional(optional) content expanding on docker where you'll
 You’ll build a working vocabulary of cloud-related terms so you can talk tech with confidence.
 
 ## The diagram below show our goal: a cloud-powered masterpiece you'll soon command. 🚀
-<img width=700 src="./assets/diagram.png"/>
+<img width=700 src="./assets/work2diagram.png"/>
 
 
 ## 🗓️ Course Structure
