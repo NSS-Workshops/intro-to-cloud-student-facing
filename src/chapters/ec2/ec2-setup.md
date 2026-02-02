@@ -6,7 +6,7 @@ In this chapter, you’ll launch an EC2 instance, attach an IAM role that allows
 ### 1. Set Up an EC2 Instance
 
 1. From the **EC2 dashboard** in the aws console, click **Launch Instance**
-2. Give your instance a tag (e.g., \`Name: rock-of-ages-instance\`)
+2. Give your instance a tag (e.g., `rock-of-ages-instance`)
 3. Choose **Amazon Linux**
 4. In the Amazon Machine Image(AMI) dropdown select **Amazon Linux 2023 kernel-6.1 AMI**
 5. Select **t2.micro** as the instance type (free tier eligible)
@@ -44,9 +44,9 @@ sudo yum update -y
 ```
 
 #### Install Docker
-\`\`\`bash
+```bash
 sudo dnf install docker -y
-\`\`\`
+```
 
 #### Start Docker and add EC2 user to Docker group
 ```bash
@@ -57,7 +57,7 @@ sudo usermod -a -G docker ec2-user
 💡 **What's happening here?** This installs and starts Docker on your EC2 instance. Adding the EC2 user to the Docker group allows you to run Docker without using `sudo`.
 
 #### Apply group changes
-\`\`\`bash
+```bash
 newgrp docker
 ```
 
@@ -81,7 +81,7 @@ docker pull [your_account_id].dkr.ecr.us-east-2.amazonaws.com/rock-of-ages-api:l
 ```
 
 If you get a permission error, make sure that you have run:
-\`\`\`bash
+```bash
 newgrp docker
 ```
 …then re-run the pull command.
