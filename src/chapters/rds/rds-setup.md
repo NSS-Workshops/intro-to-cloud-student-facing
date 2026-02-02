@@ -20,8 +20,8 @@ Fill out the database creation form with these settings:
 - Select **Single-AZ DB instance deployment**
 
 **Settings:**
-- **DB instance identifier**: \`rock-of-ages-db\`
-- **Master username**: \`rockadmin\`
+- **DB instance identifier**: `rock-of-ages-db`
+- **Master username**: `rockadmin`
 - **Credentials management**: Select Self managed
 - **Master password**: Choose and save a secure password (remember this password)
 - **Confirm password**: Re-enter your password
