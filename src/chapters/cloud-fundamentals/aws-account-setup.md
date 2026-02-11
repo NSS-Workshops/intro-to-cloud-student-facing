@@ -37,6 +37,8 @@ It includes access to the following AWS services:
 - `AmazonEC2FullAccess`
 - `AmazonRDSFullAccess`
 
+# Hello
+
 > 🚨 **Please check in with your instructor before launching any resources outside of class.**  
 > 🧹 Don’t forget to **delete your resources** at the end of the course (your instructor will show you how!).  
 
