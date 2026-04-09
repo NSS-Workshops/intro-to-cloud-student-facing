@@ -2,6 +2,14 @@
 Welcome to the **Intro to Cloud** course! By the end of this workshop, you'll understand key cloud concepts, gain hands-on experience deploying a full stack application to the cloud, 
 and confidently discuss terms related to cloud and CICD practices. 
 
+## Welcome to the team!
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nhSdljm909Y?si=NxZOxw1pFmM9OX2m" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+*Alright! I got something to say!*
+Def Leppard has just hired you to join the software team! For their hit song "Rock of Ages" it wasn't enough to make a stellar music video with tight jeans, cute butts, and budget sets. They want to take their hit in a more literal direction and create an application where users can collect actual rocks of the geological type. I guess they are a getting a little tired of sick guitar licks and the fast paced rock star lifestyle. 
+
+In any case, they've already hired a few devs and a project manager to oversee this new venture. The application has been developed by the devs but now they need their rockin' app to be available on the interweb worldwide! You've just been hired as a devops engineer to do just that!
 
 ## 📝 Summary
 
