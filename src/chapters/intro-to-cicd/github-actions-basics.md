@@ -1,4 +1,3 @@
-## What are GitHub Actions?
 
 GitHub Actions is a CI/CD platform that allows you to automate your software development workflows 
 directly in your GitHub repository. 
@@ -32,31 +31,31 @@ Let's examine an example workflow file that would run whenever code is pushed to
 ### Basic Workflow Structure
 
 ```yaml
-name: CI
+name: CI  # The name that appears in the Actions tab on GitHub
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ]         # Runs when code is pushed directly to main
   pull_request:
-    branches: [ main ]
+    branches: [ main ]         # Runs when a PR targeting main is opened or updated
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build:                       # The name of this job — can be anything
+    runs-on: ubuntu-latest     # Runs on a fresh Ubuntu virtual machine hosted by GitHub
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3       # Checks out your repo code onto the runner
     
     - name: Set up Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v3    # Installs Node.js on the runner
       with:
-        node-version: '16'
+        node-version: '16'           # Specifies which version of Node.js to use
         
     - name: Install dependencies
-      run: npm ci
+      run: npm ci                    # Installs packages from package-lock.json
       
     - name: Run tests
-      run: npm test
+      run: npm test                  # Runs your test suite
 ```
 
 ### 🏗️ How It Works
@@ -101,39 +100,27 @@ building, and deploying code using GitHub Actions.
 
 ### Workflow Triggers
 
-You can trigger workflows based on various GitHub events:
+Workflows are triggered by events in your repository. The most common triggers you'll use are:
+
+- **push**: Runs the workflow when commits are pushed to a branch
+- **pull_request**: Runs the workflow when a pull request is opened or updated
+- **workflow_dispatch**: Lets you trigger the workflow manually from the Actions tab in GitHub
 
 ```yaml
 on:
-  # Trigger on push to specific branches
   push:
     branches: [ main, develop ]
-    paths-ignore: [ '**.md' ]
-  
-  # Trigger on pull requests to specific branches
+
   pull_request:
     branches: [ main ]
-    
-  # Trigger on schedule (cron syntax)
-  schedule:
-    - cron: '0 0 * * *'  # Midnight every day
-    
-  # Manual trigger with optional inputs
+
+  # Manual trigger — useful for deployments you want to control
   workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Environment to deploy to'
-        required: true
-        default: 'staging'
-        
-  # Repository dispatch event
-  repository_dispatch:
-    types: [ deploy ]
 ```
 
 ### Jobs and Steps
 
-A workflow consists of one or more jobs that can run in parallel or sequentially:
+A workflow consists of one or more jobs. By default, jobs run in parallel — but you can make one job wait for another using `needs`:
 
 ```yaml
 jobs:
@@ -153,86 +140,6 @@ jobs:
         run: npm run build
 ```
 
-### Job Environments and Conditions
-
-You can specify environments and conditions for jobs:
-
-```yaml
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    environment: production
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - uses: actions/checkout@v3
-      - name: Deploy
-        run: ./deploy.sh
-```
-
-## Workflow Triggers and Events
-
-GitHub Actions workflows are triggered by events that occur in your repository. Understanding these events is crucial for creating effective workflows.
-
-### Common Trigger Events
-
-#### Code-related Events
-
-- **push**: When commits are pushed to a repository
-- **pull_request**: When a pull request is opened, synchronized, or closed
-- **create**: When a branch or tag is created
-- **delete**: When a branch or tag is deleted
-- **release**: When a release is created, edited, or published
-
-#### Issue and PR Events
-
-- **issues**: When an issue is opened, edited, closed, etc.
-- **issue_comment**: When a comment is added to an issue or PR
-- **pull_request_review**: When a PR review is submitted, edited, or dismissed
-- **pull_request_review_comment**: When a comment is added to a PR review
-
-#### Repository Management
-
-- **fork**: When someone forks your repository
-- **watch**: When someone stars your repository
-- **public**: When a private repository is made public
-- **repository_dispatch**: Custom webhook event
-
-#### Scheduled Events
-
-- **schedule**: Run workflows at scheduled times using cron syntax
-- **workflow_dispatch**: Manually trigger a workflow run
-- **repository_dispatch**: Trigger a workflow from an external event
-
-### Context and Expression Syntax
-
-GitHub Actions provides context objects that contain information about the workflow run, environment, and events that triggered the workflow.
-
-#### Available Contexts
-
-- **github**: Information about the workflow run and event that triggered it
-- **env**: Environment variables set in the workflow
-- **job**: Information about the current job
-- **steps**: Information about the steps in the current job
-- **runner**: Information about the runner executing the job
-- **secrets**: Access to secrets defined in the repository
-- **strategy**: Information about the matrix strategy for the current job
-- **matrix**: Information about the matrix parameters for the current job
-- **needs**: Outputs from all jobs that are defined as a dependency
-
-#### Expression Syntax
-
-Expressions are enclosed in `${{ }}` and can be used in most places in workflow files:
-
-```yaml
-steps:
-  - name: Conditional step
-    if: ${{ github.event_name == 'push' }}
-    run: echo "This was a push event"
-    
-  - name: Dynamic value
-    run: echo "Repository is ${{ github.repository }}"
-```
-
 ## Using Actions from the Marketplace
 
 One of the most powerful features of GitHub Actions is the ability to use pre-built actions from the GitHub Marketplace.
@@ -249,8 +156,6 @@ One of the most powerful features of GitHub Actions is the ability to use pre-bu
 
 ```yaml
 - uses: actions/checkout@v3
-  with:
-    fetch-depth: 0  # Fetch all history for all branches and tags
 ```
 
 #### Setup Language Environments
@@ -282,43 +187,6 @@ One of the most powerful features of GitHub Actions is the ability to use pre-bu
     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     aws-region: us-east-1
-```
-
-### Creating Custom Actions
-
-You can also create your own actions:
-
-1. **JavaScript Actions**: Written in JavaScript, run directly on the runner inline
-  The run propertyof the action 'Run JavaScript inline' below is an example of writing custom action 
-  inline (right inside the yaml template)
-2. **JavaScript Actions**: Written in JavaScript, run directly on the runner logic specified in external js file
-  The uses property in the "Run external JavaScript action" step below illustrates how to run a custom 
-  JavaScript action defined in an external file that is part of the repository.
-
-```
-name: Inline JavaScript in GitHub Actions
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  run-inline-js:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Run JavaScript inline
-      run: |
-        echo "Running inline JavaScript..."
-        node -e "console.log('Hello from inline JavaScript!');"
-    - name: Run external JavaScript action
-      uses: ./.github/actions/my-js-action
-      with:
-        example-input: "Hello, world!"
 ```
 
 ## Hands-on Exercise: Create a Basic CI Workflow
