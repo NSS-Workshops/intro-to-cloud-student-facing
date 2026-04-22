@@ -21,7 +21,7 @@ The instructors have already created an IAM role `github_oidc` with all of the p
 "StringLike": {
                     "token.actions.githubusercontent.com:sub": "repo:JaneDoe/*"
                 }`
-4. Replace `JaneDoe` with your github username and click update policy
+4. Replace `JaneDoe` with your github username (this is case sensitive) and click update policy
 5. Grab the ARN for the github_oidc role. Save this to use in the next steps. 
 
 #### What’s happening here?

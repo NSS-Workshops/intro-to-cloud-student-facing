@@ -1,22 +1,26 @@
-## Creating and Configuring a CloudFront Distribution
 
 Now that we understand what CloudFront is and how it works, let's create our own CloudFront distribution to serve our Rock of Ages application faster and more securely to users around the world.
 
-### 1. Navigate to the CloudFront Console
+## Navigate to the CloudFront Console
 
 1. Visit the **[CloudFront Console](https://console.aws.amazon.com/cloudfront)**
 2. Click **Create Distribution**
 
 💡 **What's happening here?** You're accessing AWS's content delivery network service to create a new distribution. A distribution is CloudFront's term for a configuration that tells AWS exactly how you want your website content delivered to users around the world - which files to serve, from where, and how to optimize them.
 
-### 2. Distribution Options
+### Step 1: Choose a Plan
+
+1. Select *Pay as you go* 
+2. Click next
+
+### Step 2: Get Started
 
 1. Name your distribution. This can be anything, for example: rock-of-ages-distribution
-2. Select **Single website or app**
-3. Do not add a Custom Domain or Tags 
+2. Select Single website or app
+3. Do not add a Custom Domain or Tags
 4. Click next
 
-### 3. Specify Origin
+### Step 3: Specify Origin
 
 The origin is where CloudFront will fetch your website files from - in our case, your S3 bucket.
 
@@ -40,18 +44,18 @@ The origin is where CloudFront will fetch your website files from - in our case,
 💡 **What's happening here?** You're telling CloudFront where to find your website files and how to retrieve them. The "Use website endpoint" option is crucial because it ensures CloudFront treats your S3 bucket as a website that can handle routing (not just a file storage system). The HTTP protocol setting controls how CloudFront communicates with your S3 bucket, while Origin Shield would add an extra caching layer between CloudFront and S3 that we don't need for this project.
 
 
-### 4. Enable Security
+### Step 4: Enable Security
 
 1. Configure Web Application Firewall (WAF): Select **Do not enable security protections**
 
 💡 **What's happening here?** WAF (Web Application Firewall) provides additional security filtering to block malicious traffic before it reaches your website. For a simple static website like ours, CloudFront's built-in security features are sufficient, so we're skipping this extra layer to keep things simple and avoid additional costs.
 
-### 5. Review and Create
+### Step 5: Review and Create
 
 1. Review your distributions settings and click **Create distribution**
 
 
-### 6. Wait for Distribution to Deploy
+## Wait for Distribution to Deploy
 
 1. Your distribution will begin deploying immediately and take approximately **5-15 minutes** to fully complete
 2. You'll be automatically taken to your distribution's details page
@@ -59,7 +63,7 @@ The origin is where CloudFront will fetch your website files from - in our case,
 
 💡 **What's happening here?** AWS is configuring your content across its global network of edge locations. This process takes time because CloudFront is literally copying your website configuration to dozens of data centers worldwide. Even though it shows "Deploying," the basic functionality often works before the process is 100% complete.
 
-### 7. Access Your Site via CloudFront
+## Access Your Site via CloudFront
 
 You can test your CloudFront distribution right away:
 
