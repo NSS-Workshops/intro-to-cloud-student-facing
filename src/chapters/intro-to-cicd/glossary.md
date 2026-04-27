@@ -22,3 +22,5 @@ This glossary provides definitions for key terms introduced in the CI/CD module.
 
 ## Further Learning Resources!
 As you may know by now, there are a huge number of resources available to continue learning cloud and devops technologies. A good place to start is some of the trainings offered by [Amazon Skillbuilder](https://skillbuilder.aws/getstarted). There is a paid subscription plan available but it offers many trainings for free as well.
+
+[Gihub Actions Docs](https://docs.github.com/en/actions)
