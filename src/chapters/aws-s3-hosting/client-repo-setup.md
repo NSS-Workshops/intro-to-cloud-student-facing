@@ -25,7 +25,7 @@ For this workshop, we'll be using a pre-built React application created with Vit
 
 1. Visit the repository at [https://github.com/NSS-Workshops/rock-of-ages-client](https://github.com/NSS-Workshops/rock-of-ages-client)
 
-2. Click the "Fork" button in the top-right corner to create your own copy of the repository
+2. Click the "Use this template" button in the top-right corner then select "Create a new repository" to create your own copy of the repository. Make sure to select your github user as the owner and name the repo. 
 
 3. Once forked, clone your repository to your local machine:
    ```bash
