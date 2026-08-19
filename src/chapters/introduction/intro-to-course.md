@@ -63,7 +63,7 @@ You’ll build a working vocabulary of cloud-related terms so you can talk tech 
 ---
 ## 📚 Session Breakdown
 
-There will be Nine class sessions held on Zoom.
+There will be Eight class sessions held on Zoom.
 
 
 #### Session 1: Cloud Fundamentals/Deploying to S3
@@ -115,10 +115,6 @@ There will be Nine class sessions held on Zoom.
 - Testing RDS using VsCode extensions
 - Github actions and secrets updates to deploy RDS compatible API
 
-#### Session 9: Q and A, Assessments, and additional chapters
-- Students will work on individual assessments for course completion
-- Extra time will be spent working on docker network and docker compose additional material
-- General Q and A hangout
 
 ---
 
