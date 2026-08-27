@@ -19,10 +19,11 @@ The instructors have already created an IAM role `github_oidc` with all of the p
 3. Select the trust relationships tab and click edit trust policy. You will see:
 `
 "StringLike": {
-                    "token.actions.githubusercontent.com:sub": "repo:JaneDoe/*"
+                    "token.actions.githubusercontent.com:sub": "repo:YOUR-GITHUB-USERNAME@OWNER-ID/*"
                 }`
-4. Replace `JaneDoe` with your github username (this is case sensitive) and click update policy
-5. Grab the ARN for the github_oidc role. Save this to use in the next steps. 
+4. Replace `YOUR-GITHUB-USERNAME` with your github username (this is case sensitive) 
+5. Rplace `OWNER-ID` with your github id. You can find this by visiting https://api.github.com/users/YOUR-USERNAME and grabbing the value of id. 
+6. Grab the ARN for the github_oidc role. Save this to use in the next steps. 
 
 #### What’s happening here?
 
@@ -109,7 +110,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 24
 
       - name: Install dependencies
         run: npm ci
