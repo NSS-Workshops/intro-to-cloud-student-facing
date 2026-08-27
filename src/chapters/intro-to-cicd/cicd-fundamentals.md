@@ -1,4 +1,3 @@
-Something Random!
 
 If you've ever deployed an app by hand — copying files, running commands in the right order, hoping nothing breaks — you already understand the problem that CI/CD solves.
 

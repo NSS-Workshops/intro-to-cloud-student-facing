@@ -19,7 +19,7 @@ The instructors have already created an IAM role `github_oidc` with all of the p
 3. Select the trust relationships tab and click edit trust policy. You will see:
 `
 "StringLike": {
-                    "token.actions.githubusercontent.com:sub": "repo:JaneDoe/*"
+                    "token.actions.githubusercontent.com:sub": "repo:*"
                 }`
 4. Replace `JaneDoe` with your github username (this is case sensitive) and click update policy
 5. Grab the ARN for the github_oidc role. Save this to use in the next steps. 
